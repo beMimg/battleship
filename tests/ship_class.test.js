@@ -19,4 +19,18 @@ describe('ship object', () => {
       isItSunk: false,
     });
   });
+
+  it('isSunk should return true when hits match length', () => {
+    const ship = new Ship(3);
+    ship.beenHit();
+    ship.beenHit();
+    ship.beenHit();
+    expect(ship.isItSunk).toBe(true);
+  });
+
+  it('isSunk should return false when hits are less than length', () => {
+    const ship = new Ship(3);
+    ship.beenHit();
+    expect(ship.isItSunk).toBe(false);
+  });
 });
