@@ -2,14 +2,19 @@ class Ship {
   constructor(length) {
     this.length = length;
     this.hits = 0;
-    this.isSunk = false;
+    this.isItSunk = false;
   }
 
   beenHit() {
     this.hits++;
+    this.isSunk(); // everytime ship gets hit checks if the hits matches its length
+  }
+
+  isSunk() {
+    if (this.hits >= this.length) {
+      this.isItSunk = true;
+    }
   }
 }
 
-// const ship1 = new Ship(3);
-// console.log(ship1);
 module.exports = Ship;

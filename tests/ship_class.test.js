@@ -7,7 +7,7 @@ describe('ship object', () => {
     expect(ship1).toEqual({
       length: 3,
       hits: 0,
-      isSunk: false,
+      isItSunk: false,
     });
   });
 
@@ -16,7 +16,7 @@ describe('ship object', () => {
     expect(ship1).toEqual({
       length: 3,
       hits: 1,
-      isSunk: false,
+      isItSunk: false,
     });
   });
 });
