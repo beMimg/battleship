@@ -1,4 +1,4 @@
-let Ship = require('../src/assets/ship_class');
+let Ship = require('../src/ship_class');
 
 describe('ship object', () => {
   const ship1 = new Ship(3);
