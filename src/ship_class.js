@@ -6,7 +6,7 @@ class Ship {
   }
 
   beenHit() {
-    this.hits++;
+    this.hits += 1;
     this.isSunk(); // everytime ship gets hit checks if the hits matches its length
   }
 
