@@ -1,20 +1,16 @@
-class Ship {
-  constructor(length) {
-    this.length = length;
-    this.hits = 0;
-    this.isItSunk = false;
-  }
-
+const createShip = (length) => ({
+  length,
+  hits: 0,
+  isItSunk: false,
   beenHit() {
     this.hits += 1;
-    this.isSunk(); // everytime ship gets hit checks if the hits matches its length
-  }
-
+    this.isSunk();
+  },
   isSunk() {
     if (this.hits >= this.length) {
       this.isItSunk = true;
     }
-  }
-}
+  },
+});
 
-module.exports = Ship;
+module.exports = createShip;
