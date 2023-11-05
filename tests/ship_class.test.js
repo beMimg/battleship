@@ -1,3 +1,4 @@
+/* eslint-disable */
 let Ship = require('../src/ship_class');
 
 describe('ship object', () => {
