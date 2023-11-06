@@ -55,7 +55,11 @@ const Gameboard = () => {
   };
 
   const recieveAttack = (coords) => {
-    if (hasShip(coords) === false) {
+    const index = board.findIndex(
+      (element) => element[0] === coords[0] && element[1] === coords[1],
+    );
+    if (iStatus[index].ship === null) {
+      iStatus[index].isAttacked = true;
       return false;
     }
     return true;
