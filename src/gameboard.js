@@ -54,7 +54,14 @@ const Gameboard = () => {
     return false;
   };
 
-  return { board, iStatus, placeShip, hasShip };
+  const recieveAttack = (coords) => {
+    if (hasShip(coords) === false) {
+      return false;
+    }
+    return true;
+  };
+
+  return { board, iStatus, placeShip, hasShip, recieveAttack };
 };
 
 module.exports = Gameboard;

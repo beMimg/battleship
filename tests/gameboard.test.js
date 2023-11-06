@@ -50,3 +50,15 @@ describe('vertical checking', () => {
     expect(game.hasShip([3, 0])).toBe(false);
   });
 });
+
+describe('recieveAttack', () => {
+  it('should return false because recieveAttack missed', () => {
+    const game = Gameboard();
+    expect(game.recieveAttack([0, 0])).toBe(false);
+  });
+  it('should return true because recieveAttack hit the ship', () => {
+    const game = Gameboard();
+    game.placeShip([0, 0], 3, 'y');
+    expect(game.recieveAttack([0, 0])).toBe(true);
+  });
+});
