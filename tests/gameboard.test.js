@@ -101,3 +101,19 @@ describe('recieveAttack', () => {
     expect(game.iStatus[index].ship.isItSunk).toBe(false);
   });
 });
+
+describe('checks whether or not all of the ships have been sunk', () => {
+  it('should return true if all ships are sunk', () => {
+    const game = Gameboard();
+    game.placeShip([0, 0], 1, 'y');
+    game.recieveAttack([0, 0]);
+    expect(game.isAllSunk()).toBe(true);
+  });
+
+  it('should return false if not all ships are sunk', () => {
+    const game = Gameboard();
+    game.placeShip([0, 0], 2, 'y');
+    game.recieveAttack([0, 0]);
+    expect(game.isAllSunk()).toBe(false);
+  });
+});

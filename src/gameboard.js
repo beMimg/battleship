@@ -66,7 +66,18 @@ const Gameboard = () => {
     return false;
   };
 
-  return { board, iStatus, placeShip, hasShip, recieveAttack };
+  const isAllSunk = () => {
+    const ocuppiedWithShipArray = iStatus.filter((index) => index.ship != null);
+    const allSunked = ocuppiedWithShipArray.every(
+      (index) => index.ship.isItSunk === true,
+    );
+    if (allSunked) {
+      return true;
+    }
+    return false;
+  };
+
+  return { board, iStatus, placeShip, hasShip, recieveAttack, isAllSunk };
 };
 
 module.exports = Gameboard;
