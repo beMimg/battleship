@@ -37,6 +37,11 @@ const Gameboard = () => {
         iStatus[index + i].ship = newShip;
       }
     }
+    if (direction === 'x') {
+      for (let j = 10; j < length * 10; j += 10) {
+        iStatus[index + j].ship = newShip;
+      }
+    }
   };
 
   const hasShip = (coords) => {
