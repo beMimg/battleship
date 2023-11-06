@@ -43,4 +43,10 @@ describe('vertical checking', () => {
     expect(game.hasShip([1, 0])).toBe(true);
     expect(game.hasShip([2, 0])).toBe(true);
   });
+
+  it('should return false if hasShip(is bigger than ship.lenght', () => {
+    const game = Gameboard();
+    game.placeShip([0, 0], 3, 'x');
+    expect(game.hasShip([3, 0])).toBe(false);
+  });
 });
