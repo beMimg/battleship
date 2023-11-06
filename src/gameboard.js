@@ -32,7 +32,7 @@ const Gameboard = () => {
     );
     iStatus[index].ship = newShip;
 
-    if (direction === 'x') {
+    if (direction === 'y') {
       for (let i = 0; i < length; i += 1) {
         iStatus[index + i].ship = newShip;
       }
