@@ -71,4 +71,33 @@ describe('recieveAttack', () => {
     game.placeShip([0, 0], 3, 'y');
     expect(game.recieveAttack([0, 0])).toBe(true);
   });
+
+  it('isAttacked should be set to true and ship  when recieveAttack hit', () => {
+    const game = Gameboard();
+    game.placeShip([0, 0], 2, 'y');
+    let index = 0;
+    game.recieveAttack([0, 0]);
+    expect(game.iStatus[index].isAttacked).toBe(true);
+    expect(game.iStatus[index].ship.hits).toBe(1);
+  });
+
+  it('isItSunk should return true if hits >= length', () => {
+    const game = Gameboard();
+    game.placeShip([0, 0], 1, 'y');
+    let index = 0;
+    game.recieveAttack([0, 0]);
+    expect(game.iStatus[index].isAttacked).toBe(true);
+    expect(game.iStatus[index].ship.hits).toBe(1);
+    expect(game.iStatus[index].ship.isItSunk).toBe(true);
+  });
+
+  it('isItSunk should return true if hits >= length', () => {
+    const game = Gameboard();
+    game.placeShip([0, 0], 2, 'y');
+    let index = 0;
+    game.recieveAttack([0, 0]);
+    expect(game.iStatus[index].isAttacked).toBe(true);
+    expect(game.iStatus[index].ship.hits).toBe(1);
+    expect(game.iStatus[index].ship.isItSunk).toBe(false);
+  });
 });
