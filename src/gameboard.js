@@ -67,8 +67,8 @@ const Gameboard = () => {
   };
 
   const isAllSunk = () => {
-    const ocuppiedWithShipArray = iStatus.filter((index) => index.ship != null);
-    const allSunked = ocuppiedWithShipArray.every(
+    const ocuppiedWithShip = iStatus.filter((index) => index.ship != null);
+    const allSunked = ocuppiedWithShip.every(
       (index) => index.ship.isItSunk === true,
     );
     if (allSunked) {
