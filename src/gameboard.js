@@ -33,16 +33,23 @@ const Gameboard = () => {
     iStatus[index].ship = newShip;
 
     if (direction === 'x') {
-      for (let i = 0; i < length; i++) {
+      for (let i = 0; i < length; i += 1) {
         iStatus[index + i].ship = newShip;
       }
     }
   };
-  return { board, iStatus, placeShip };
+
+  const hasShip = (coords) => {
+    const index = board.findIndex(
+      (element) => element[0] === coords[0] && element[1] === coords[1],
+    );
+    if (iStatus[index].ship != null) {
+      return true;
+    }
+    return false;
+  };
+
+  return { board, iStatus, placeShip, hasShip };
 };
 
-const game = Gameboard();
-let direction = [0, 4];
-game.placeShip(direction, 4, 'x');
-console.log(game);
 module.exports = Gameboard;
