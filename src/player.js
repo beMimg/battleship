@@ -12,10 +12,6 @@ const Player = (player) => {
     game: Gameboard(),
   };
 
-  // const randomNum = () => {
-  //   playerOne.game.board;
-  // };
-
   const newArr = [...playerOne.game.board];
 
   const computerAttacks = () => {
