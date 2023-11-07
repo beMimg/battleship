@@ -12,16 +12,33 @@ const Player = (player) => {
     game: Gameboard(),
   };
 
-  const playerOneAttacks = (coords) => {
-    playerTwo.game.recieveAttack(coords);
-    playerOne.turn = false;
+  // const randomNum = () => {
+  //   playerOne.game.board;
+  // };
+
+  const newArr = [...playerOne.game.board];
+
+  const computerAttacks = () => {
+    if (playerOne.turn === false) {
+      const randomIndex = Math.floor(Math.random() * newArr.length);
+      const coords = newArr[randomIndex];
+      playerOne.game.recieveAttack(coords);
+      newArr.splice(randomIndex, 1);
+      playerOne.turn = true;
+    }
   };
 
-  return { playerOne, playerTwo, playerOneAttacks };
-};
+  const playerOneAttacks = (coords) => {
+    if (playerOne.turn === true) {
+      playerTwo.game.recieveAttack(coords);
+      playerOne.turn = false;
+      computerAttacks();
+    } else if (playerOne.turn === false) {
+      throw new Error('Not your turn to play');
+    }
+  };
 
-// const startPlayers = Player('Jeff');
-// // startPlayers.playerOneAttacks([0, 0]);
-// console.log(startPlayers);
+  return { playerOne, playerTwo, playerOneAttacks, computerAttacks };
+};
 
 module.exports = Player;
