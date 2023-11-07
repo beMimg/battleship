@@ -1,26 +1,27 @@
 const Gameboard = require('./gameboard');
 
-const Player = (name) => {
+const Player = (player) => {
   const playerOne = {
-    username: name,
+    username: player,
     game: Gameboard(),
+    turn: true,
   };
+
   const playerTwo = {
     username: 'Anonymous',
     game: Gameboard(),
   };
 
-  let currentPlayer = playerOne;
-
-  const playerControl = () => {
-    if (currentPlayer === playerOne) {
-      currentPlayer = playerTwo;
-    } else {
-      currentPlayer = playerOne;
-    }
+  const playerOneAttacks = (coords) => {
+    playerTwo.game.recieveAttack(coords);
+    playerOne.turn = false;
   };
 
-  return { playerOne, playerTwo };
+  return { playerOne, playerTwo, playerOneAttacks };
 };
-const jeff = Player('Jeff');
-console.log(jeff);
+
+// const startPlayers = Player('Jeff');
+// // startPlayers.playerOneAttacks([0, 0]);
+// console.log(startPlayers);
+
+module.exports = Player;
