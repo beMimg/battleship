@@ -32,12 +32,12 @@ const Gameboard = () => {
     );
     iStatus[index].ship = newShip;
 
-    if (direction === 'y') {
+    if (direction === 'x') {
       for (let i = 0; i < length; i += 1) {
         iStatus[index + i].ship = newShip;
       }
     }
-    if (direction === 'x') {
+    if (direction === 'y') {
       for (let j = 10; j < length * 10; j += 10) {
         iStatus[index + j].ship = newShip;
       }
@@ -67,8 +67,8 @@ const Gameboard = () => {
   };
 
   const isAllSunk = () => {
-    const ocuppiedWithShipArray = iStatus.filter((index) => index.ship != null);
-    const allSunked = ocuppiedWithShipArray.every(
+    const ocuppiedWithShip = iStatus.filter((index) => index.ship != null);
+    const allSunked = ocuppiedWithShip.every(
       (index) => index.ship.isItSunk === true,
     );
     if (allSunked) {
