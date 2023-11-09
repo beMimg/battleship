@@ -117,3 +117,11 @@ describe('checks whether or not all of the ships have been sunk', () => {
     expect(game.isAllSunk()).toBe(false);
   });
 });
+
+// describe('should not accept taken coords or legal coords', () => {
+//   it('should throw an error when placing a ship when that coord is already ocuppied', () => {
+//     const game = Gameboard();
+//     game.placeShip([0, 0], 2, 'y');
+//     expect(game.placeShip([0, 0], 2, 'y')).toBeNull();
+//   });
+// });
