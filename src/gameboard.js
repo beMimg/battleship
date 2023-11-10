@@ -26,10 +26,22 @@ const Gameboard = () => {
   const board = buildBoard();
   const iStatus = boardStatus(board);
 
+  const isDifferentRow = (index, i) => {
+    // end of rows are 9,19,29,39,etc.
+    // this checks if index is smaller than 9, and index + i is bigger than 9 return true. placement not allowed.
+    for (let j = 9; j < 100; j += 10) {
+      if (index <= j && index + i > j) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   const isPlacementUnavailable = (index, length) => {
     for (let i = 0; i < length; i += 1) {
       if (
         iStatus[index + i].ship !== null ||
+        isDifferentRow(index, i) ||
         iStatus[index + i * 10].ship !== null
       ) {
         return true;

@@ -135,18 +135,18 @@ describe('check if the placement of the ship is available', () => {
     expect(game.placeShip([3, 0], 5, 'y')).toEqual(error('placement'));
   });
 
-  // it('should not placeShip if the lenght go past the end of the row', () => {
-  //   const game = Gameboard();
-  //   expect(game.placeShip([0, 9], 2, 'x')).toBeNull;
-  //   expect(game.placeShip([0, 8], 3, 'x')).toBeNull;
-  //   expect(game.placeShip([0, 7], 4, 'x')).toBeNull;
-  //   expect(game.placeShip([0, 6], 5, 'x')).toBeNull;
-  // });
+  it('should not placeShip if the lenght go past the end of the row', () => {
+    const game = Gameboard();
+    expect(game.placeShip([0, 9], 2, 'x')).toEqual(error('placement'));
+    expect(game.placeShip([0, 8], 3, 'x')).toEqual(error('placement'));
+    expect(game.placeShip([0, 7], 4, 'x')).toEqual(error('placement'));
+    expect(game.placeShip([0, 6], 5, 'x')).toEqual(error('placement'));
+  });
 
-  // it('should not placeShip if the lenght and coords go past the end of the column', () => {
-  //   expect(game.placeShip([9, 0], 2, 'y')).toBeNull;
-  //   expect(game.placeShip([8, 0], 3, 'y')).toBeNull;
-  //   expect(game.placeShip([7, 0], 4, 'y')).toBeNull;
-  //   expect(game.placeShip([6, 0], 5, 'y')).toBeNull;
-  // });
+  it('should not placeShip if the lenght and coords go past the end of the column', () => {
+    expect(game.placeShip([9, 0], 2, 'y')).toEqual(error('placement'));
+    expect(game.placeShip([8, 0], 3, 'y')).toEqual(error('placement'));
+    expect(game.placeShip([7, 0], 4, 'y')).toEqual(error('placement'));
+    expect(game.placeShip([6, 0], 5, 'y')).toEqual(error('placement'));
+  });
 });
