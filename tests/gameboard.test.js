@@ -118,10 +118,22 @@ describe('checks whether or not all of the ships have been sunk', () => {
   });
 });
 
-// describe('should not accept taken coords or legal coords', () => {
-//   it('should throw an error when placing a ship when that coord is already ocuppied', () => {
-//     const game = Gameboard();
-//     game.placeShip([0, 0], 2, 'y');
-//     expect(game.placeShip([0, 0], 2, 'y')).toBeNull();
-//   });
-// });
+// write tests for allowed placement of ships
+
+describe('check if the placement of the ship is available', () => {
+  const game = Gameboard();
+  it('should return null because the length reaches another ship (horizontal)', () => {
+    game.placeShip([0, 2], 1, 'x');
+    expect(game.placeShip([0, 0], 3, 'x')).toBeNull;
+    expect(game.placeShip([0, 1], 3, 'x')).toBeNull;
+    expect(game.placeShip([0, 2], 3, 'x')).toBeNull;
+  });
+
+  it('should return null because the length reaches another ship (vertical)', () => {
+    game.placeShip([0, 2], 5, 'y');
+    expect(game.placeShip([1, 2], 3, 'y')).toBeNull;
+    expect(game.placeShip([2, 2], 3, 'x')).toBeNull;
+    expect(game.placeShip([3, 2], 3, 'x')).toBeNull;
+    expect(game.placeShip([4, 2], 3, 'x')).toBeNull;
+  });
+});

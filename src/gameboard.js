@@ -25,19 +25,47 @@ const Gameboard = () => {
   const board = buildBoard();
   const iStatus = boardStatus(board);
 
+  // const isPlacementAvailable = (coords, length) => {
+  //   const index = board.findIndex(
+  //     (element) => element[0] === coords[0] && element[1] === coords[1],
+  //   );
+  //   let allNull = true;
+  //   for (let i = 0; i < length; i += 1) {
+  //     if (iStatus[index + i].ship !== null) {
+  //       allNull = false;
+  //       break;
+  //     }
+  //   }
+  //   if (allNull) return true;
+  // };
+
   const placeShip = (coords, length, direction) => {
     const newShip = createShip(length);
     const index = board.findIndex(
       (element) => element[0] === coords[0] && element[1] === coords[1],
     );
-    iStatus[index].ship = newShip;
+
+    // do nothing if any there's a ship in coords
+    for (let k = 0; k < length; k += 1) {
+      for (let n = 0; n < length * 10; n += 10) {
+        if (
+          iStatus[index].ship !== null ||
+          iStatus[index + k].ship !== null ||
+          iStatus[index + n].ship !== null
+        ) {
+          return null;
+        }
+      }
+    }
 
     if (direction === 'x') {
       for (let i = 0; i < length; i += 1) {
+        iStatus[index].ship = newShip;
         iStatus[index + i].ship = newShip;
       }
     }
     if (direction === 'y') {
+      iStatus[index].ship = newShip;
       for (let j = 10; j < length * 10; j += 10) {
         iStatus[index + j].ship = newShip;
       }
@@ -77,7 +105,14 @@ const Gameboard = () => {
     return false;
   };
 
-  return { board, iStatus, placeShip, hasShip, recieveAttack, isAllSunk };
+  return {
+    board,
+    iStatus,
+    placeShip,
+    hasShip,
+    recieveAttack,
+    isAllSunk,
+  };
 };
 
 module.exports = Gameboard;
