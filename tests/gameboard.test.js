@@ -132,8 +132,22 @@ describe('check if the placement of the ship is available', () => {
   it('should return null because the length reaches another ship (vertical)', () => {
     game.placeShip([0, 2], 5, 'y');
     expect(game.placeShip([1, 2], 3, 'y')).toBeNull;
-    expect(game.placeShip([2, 2], 3, 'x')).toBeNull;
-    expect(game.placeShip([3, 2], 3, 'x')).toBeNull;
-    expect(game.placeShip([4, 2], 3, 'x')).toBeNull;
+    expect(game.placeShip([2, 2], 3, 'y')).toBeNull;
+    expect(game.placeShip([3, 2], 3, 'y')).toBeNull;
+    expect(game.placeShip([4, 2], 3, 'y')).toBeNull;
+  });
+
+  it('should not placeShip if the lenght go past the end of the row', () => {
+    expect(game.placeShip([0, 9], 2, 'x')).toBeNull;
+    expect(game.placeShip([0, 8], 3, 'x')).toBeNull;
+    expect(game.placeShip([0, 7], 4, 'x')).toBeNull;
+    expect(game.placeShip([0, 6], 5, 'x')).toBeNull;
+  });
+
+  it('should not placeShip if the lenght and coords go past the end of the column', () => {
+    expect(game.placeShip([9, 0], 2, 'y')).toBeNull;
+    expect(game.placeShip([8, 0], 3, 'x')).toBeNull;
+    expect(game.placeShip([7, 0], 4, 'x')).toBeNull;
+    expect(game.placeShip([6, 0], 5, 'x')).toBeNull;
   });
 });
