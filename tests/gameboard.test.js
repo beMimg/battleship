@@ -146,8 +146,8 @@ describe('check if the placement of the ship is available', () => {
 
   it('should not placeShip if the lenght and coords go past the end of the column', () => {
     expect(game.placeShip([9, 0], 2, 'y')).toBeNull;
-    expect(game.placeShip([8, 0], 3, 'x')).toBeNull;
-    expect(game.placeShip([7, 0], 4, 'x')).toBeNull;
-    expect(game.placeShip([6, 0], 5, 'x')).toBeNull;
+    expect(game.placeShip([8, 0], 3, 'y')).toBeNull;
+    expect(game.placeShip([7, 0], 4, 'y')).toBeNull;
+    expect(game.placeShip([6, 0], 5, 'y')).toBeNull;
   });
 });
