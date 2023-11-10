@@ -15,7 +15,9 @@ const initializeGame = () => {
   const player = Player('WILL GET NAME AFTER');
   console.log(player.playerOne.game);
   player.playerOne.game.placeShip([1, 8], 2, 'x');
+  player.playerOne.game.placeShip([9, 0], 2, 'y');
   // player.playerOne.game.placeShip([0, 2], 1, 'x');
+  // data-x + data-y makes coords
 };
 
 module.exports = initializeGame;

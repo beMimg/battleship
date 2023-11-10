@@ -40,6 +40,7 @@ const Gameboard = () => {
   const isPlacementUnavailable = (index, length) => {
     for (let i = 0; i < length; i += 1) {
       if (
+        index + i * 10 >= 100 ||
         iStatus[index + i].ship !== null ||
         isDifferentRow(index, i) ||
         iStatus[index + i * 10].ship !== null
