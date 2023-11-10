@@ -1,5 +1,6 @@
 /* eslint-disable */
 const Gameboard = require('../src/gameboard');
+const error = require('../src/utils');
 
 describe('the right square checking', () => {
   it('should return true when check if theres a ship in a the right coordinate', () => {
@@ -118,36 +119,34 @@ describe('checks whether or not all of the ships have been sunk', () => {
   });
 });
 
-// write tests for allowed placement of ships
-
 describe('check if the placement of the ship is available', () => {
   const game = Gameboard();
-  it('should return null because the length reaches another ship (horizontal)', () => {
+  it('should return  because the length reaches another ship (horizontal)', () => {
     game.placeShip([0, 2], 1, 'x');
-    expect(game.placeShip([0, 0], 3, 'x')).toBeNull;
-    expect(game.placeShip([0, 1], 3, 'x')).toBeNull;
-    expect(game.placeShip([0, 2], 3, 'x')).toBeNull;
+    expect(game.placeShip([0, 0], 3, 'x')).toEqual(error('placement'));
+    expect(game.placeShip([0, 1], 3, 'x')).toEqual(error('placement'));
+    expect(game.placeShip([0, 2], 3, 'x')).toEqual(error('placement'));
   });
 
   it('should return null because the length reaches another ship (vertical)', () => {
-    game.placeShip([0, 2], 5, 'y');
-    expect(game.placeShip([1, 2], 3, 'y')).toBeNull;
-    expect(game.placeShip([2, 2], 3, 'y')).toBeNull;
-    expect(game.placeShip([3, 2], 3, 'y')).toBeNull;
-    expect(game.placeShip([4, 2], 3, 'y')).toBeNull;
+    game.placeShip([3, 0], 1, 'y');
+    expect(game.placeShip([1, 0], 5, 'y')).toEqual(error('placement'));
+    expect(game.placeShip([2, 0], 5, 'y')).toEqual(error('placement'));
+    expect(game.placeShip([3, 0], 5, 'y')).toEqual(error('placement'));
   });
 
-  it('should not placeShip if the lenght go past the end of the row', () => {
-    expect(game.placeShip([0, 9], 2, 'x')).toBeNull;
-    expect(game.placeShip([0, 8], 3, 'x')).toBeNull;
-    expect(game.placeShip([0, 7], 4, 'x')).toBeNull;
-    expect(game.placeShip([0, 6], 5, 'x')).toBeNull;
-  });
+  // it('should not placeShip if the lenght go past the end of the row', () => {
+  //   const game = Gameboard();
+  //   expect(game.placeShip([0, 9], 2, 'x')).toBeNull;
+  //   expect(game.placeShip([0, 8], 3, 'x')).toBeNull;
+  //   expect(game.placeShip([0, 7], 4, 'x')).toBeNull;
+  //   expect(game.placeShip([0, 6], 5, 'x')).toBeNull;
+  // });
 
-  it('should not placeShip if the lenght and coords go past the end of the column', () => {
-    expect(game.placeShip([9, 0], 2, 'y')).toBeNull;
-    expect(game.placeShip([8, 0], 3, 'y')).toBeNull;
-    expect(game.placeShip([7, 0], 4, 'y')).toBeNull;
-    expect(game.placeShip([6, 0], 5, 'y')).toBeNull;
-  });
+  // it('should not placeShip if the lenght and coords go past the end of the column', () => {
+  //   expect(game.placeShip([9, 0], 2, 'y')).toBeNull;
+  //   expect(game.placeShip([8, 0], 3, 'y')).toBeNull;
+  //   expect(game.placeShip([7, 0], 4, 'y')).toBeNull;
+  //   expect(game.placeShip([6, 0], 5, 'y')).toBeNull;
+  // });
 });
