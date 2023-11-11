@@ -37,15 +37,16 @@ const Gameboard = () => {
     return false;
   };
 
-  const isPlacementUnavailable = (index, length) => {
+  const isPlacementUnavailable = (index, length, direction) => {
     for (let i = 0; i < length; i += 1) {
-      if (
-        index + i * 10 >= 100 ||
-        iStatus[index + i].ship !== null ||
-        isDifferentRow(index, i) ||
-        iStatus[index + i * 10].ship !== null
-      ) {
-        return true;
+      if (direction === 'x') {
+        if (iStatus[index + i].ship !== null || isDifferentRow(index, i)) {
+          return true;
+        }
+      } else if (direction === 'y') {
+        if (index + i * 10 >= 100 || iStatus[index + i * 10].ship !== null) {
+          return true;
+        }
       }
     }
     return false;
@@ -57,7 +58,7 @@ const Gameboard = () => {
       (element) => element[0] === coords[0] && element[1] === coords[1],
     );
 
-    if (isPlacementUnavailable(index, length)) {
+    if (isPlacementUnavailable(index, length, direction)) {
       return error('placement');
     }
 
