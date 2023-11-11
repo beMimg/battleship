@@ -15,10 +15,17 @@ const displayGrid = (container, whichPlayer) => {
 
     // Its not empty and not hit
     if (
+      container.classList.value.includes('player-container') &&
       whichPlayer.game.iStatus[i].isAttacked === null &&
       whichPlayer.game.iStatus[i].ship !== null
     ) {
       gridItem.classList = 'gridItem ship';
+    } else if (
+      container.classList.value.includes('computer-container') &&
+      whichPlayer.game.iStatus[i].isAttacked === null &&
+      whichPlayer.game.iStatus[i].ship !== null
+    ) {
+      gridItem.classList = 'gridItem empty';
     }
 
     // Its not empty and hit

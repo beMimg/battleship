@@ -15,6 +15,9 @@
   font-weight: bold;
   cursor: pointer;
 }
+.gridItem:hover {
+  background-color: rgb(135, 243, 238);
+}
 
 .empty {
   background-color: rgb(13, 165, 253);

@@ -34,6 +34,7 @@ const initializeGame = () => {
   players.playerOneAttacks([2, 0]);
   players.playerOneAttacks([3, 0]);
   players.playerOneAttacks([4, 0]);
+  players.playerOneAttacks([3, 2]);
 
   displayGrid(playerContainer, players.playerOne);
   displayGrid(computerContainer, players.computer);
