@@ -1,10 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+
+:root {
+  --main-font: 'Allerta Stencil', sans-serif;
+}
+body {
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  background:
+    linear-gradient(rgba(4, 142, 235, 0.2), rgba(0, 0, 0, 0.7)),
+    url(./assets/ai-generated-8228367_1920.jpg) center/cover no-repeat;
+  color: white;
+  font-family: var(--main-font);
+}
+h1,
+h2,
+h3,
+p,
+ul,
+li {
+  padding: 0;
+  margin: 0;
+}
+.body {
+  height: 100vh;
+  gap: 20px;
+  grid-template-rows: 15% 1fr;
+  display: grid;
+}
+.header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.header .title {
+  font-size: 8vh;
+}
+.get-player-info {
+  margin: 20px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+form {
+  width: 100%;
+  gap: 50px;
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form label {
+  font-size: 2rem;
+  text-align: center;
+}
+form input {
+  width: 35vw;
+  min-width: 200px;
+  padding: 10px;
+  font-size: 2rem;
+  border-radius: 5px;
+  border: none;
+  font-family: var(--main-font);
+}
+form button {
+  width: 30vw;
+  min-width: 200px;
+  padding: 10px;
+  font-size: 2rem;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--main-font);
+  cursor: pointer;
+}
 .grid-container {
+  margin: 20px;
+  grid-gap: 2px;
   display: grid;
   grid-template-columns: repeat(10, 30px);
-  grid-gap: 2px;
-  margin: 20px;
 }
-
 .gridItem {
   width: 30px;
   height: 30px;
@@ -18,23 +97,40 @@
 .gridItem:hover {
   background-color: rgb(135, 243, 238);
 }
-
 .empty {
-  background-color: rgb(13, 165, 253);
+  background-color: rgb(0, 105, 148);
 }
-
 .ship {
-  background-color: rgb(0, 65, 0);
+  background-color: rgb(77, 77, 77);
 }
-
 .shipHitted {
-  background-color: rgb(0, 255, 98);
+  background-color: rgb(255, 0, 0);
 }
-
-.shotMissed {
-  background-color: red;
+.missedShot {
+  background-color: rgb(192, 192, 192);
 }
-
 .isSunked {
   background-color: black;
 }
+
+/* @media only screen and (max-width: 600px) {
+  form label {
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+  }
+  form input {
+    width: 160px;
+    padding: 20px;
+    font-size: 20px;
+  }
+  form button {
+    border: none;
+    border-radius: 4px;
+    font-family: var(--main-font);
+    width: 200px;
+    cursor: pointer;
+    height: 10vh;
+    font-size: 30px;
+  }
+} */

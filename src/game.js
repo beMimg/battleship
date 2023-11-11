@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 const displayGrid = require('./grid');
-const createGrid = require('./grid');
 const Player = require('./player');
 
 const playerContainer = document.querySelector('.player-container');
