@@ -7,7 +7,7 @@ const Player = (player) => {
     turn: true,
   };
 
-  const playerTwo = {
+  const computer = {
     username: 'Anonymous',
     game: Gameboard(),
   };
@@ -26,7 +26,7 @@ const Player = (player) => {
 
   const playerOneAttacks = (coords) => {
     if (playerOne.turn === true) {
-      playerTwo.game.recieveAttack(coords);
+      computer.game.recieveAttack(coords);
       playerOne.turn = false;
       computerAttacks();
     } else if (playerOne.turn === false) {
@@ -34,7 +34,7 @@ const Player = (player) => {
     }
   };
 
-  return { playerOne, playerTwo, playerOneAttacks, computerAttacks };
+  return { playerOne, computer, playerOneAttacks, computerAttacks };
 };
 
 module.exports = Player;
