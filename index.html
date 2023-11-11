@@ -6,8 +6,19 @@
     <title>Document</title>
   <script defer src="runtime.main.js"></script><script defer src="index.main.js"></script></head>
   <body>
-    <h1>Battleship</h1>
-    <div class="player-container grid-container"></div>
-    <div class="computer-container grid-container"></div>
+    <div class="body">
+      <div class="header">
+        <h1 class="title">Battleship</h1>
+      </div>
+      <section class="get-player-info">
+        <form>
+          <label for="name">Soldier name:</label>
+          <input type="text" name="name" id="name" />
+          <button type="submit">Start game</button>
+        </form>
+      </section>
+      <!-- <div class="player-container grid-container"></div>
+      <div class="computer-container grid-container"></div> -->
+    </div>
   </body>
 </html>
