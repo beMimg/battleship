@@ -1,7 +1,4 @@
 import './style.css';
+import { handleBtns } from './utils';
 
-const initializeGame = require('./game');
-const { handleBtns } = require('./utils');
-
-initializeGame();
 handleBtns();

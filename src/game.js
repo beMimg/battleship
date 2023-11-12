@@ -6,14 +6,11 @@ const Player = require('./player');
 const playerContainer = document.querySelector('.player-container');
 const computerContainer = document.querySelector('.computer-container');
 
-const initializeGame = () => {
+const initialize = (name) => {
   // clicking the start game button, both grids will apear in the future
-
   // clicking the start game button, both grids will apear in the future
-
-  const players = Player('WILL GET NAME AFTER');
+  const players = Player(name);
   console.log(players);
-
   // This will be choice of the players in future
   players.playerOne.game.placeShip([0, 0], 5, 'x');
   players.playerOne.game.placeShip([0, 9], 4, 'y');
@@ -39,7 +36,8 @@ const initializeGame = () => {
   displayGrid(computerContainer, players.computer);
 };
 
-module.exports = initializeGame;
+module.exports = initialize;
+
 // playerContainer.addEventListener('click', (e) => {
 //   const x = e.target.dataset.x;
 //   const y = e.target.dataset.y;
