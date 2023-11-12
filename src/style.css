@@ -108,6 +108,9 @@ form button {
   align-items: center;
   justify-items: center;
 }
+.player-name {
+  text-transform: uppercase;
+}
 .grid-container {
   grid-gap: 2px;
   display: grid;
