@@ -1,10 +1,6 @@
 /* eslint-disable */
 import Gameboard from '../src/gameboard';
-
-test('use jsdom in this test file', () => {
-  const element = document.createElement('div');
-  expect(element).not.toBeNull();
-});
+import { error } from '../src/utils';
 
 describe('the right square checking', () => {
   it('should return true when check if theres a ship in a the right coordinate', () => {

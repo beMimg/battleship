@@ -1,5 +1,5 @@
 /* eslint-disable */
-const Player = require('../src/player');
+import Player from '../src/player';
 
 describe('players can take turns playing the game by attacking the enemy Gameboard', () => {
   it('expect inicial playerOne.turn to return true', () => {

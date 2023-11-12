@@ -2,11 +2,11 @@
 import Player from './player';
 import displayGrid from './grid';
 import { gameStage, howManyShips } from './utils';
-const playerContainer = document.querySelector('.player-container');
-const computerContainer = document.querySelector('.computer-container');
-const gameStatus = document.querySelector('.game-status');
 
 const initialize = (name) => {
+  const playerContainer = document.querySelector('.player-container');
+  const computerContainer = document.querySelector('.computer-container');
+
   // This function is called when the form is submitted, with name being inp.value
   const players = Player(name);
 

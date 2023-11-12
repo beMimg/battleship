@@ -1,22 +1,20 @@
 /* eslint-disable no-console */
 import initialize from './game';
 
-const form = document.querySelector('form');
-const soldierNameElement = document.getElementById('soldierName');
-const landingPage = document.querySelector('.landing-page');
-const gamePage = document.querySelector('.game-page');
-const playerName = document.querySelector('.player-name');
-const gameStatus = document.querySelector('.game-status');
-
 const error = (type) => {
   let errorMessage = '';
   if (type === 'placement') {
     errorMessage += 'This placement is not allowed.';
   }
-  console.error(errorMessage);
+  return errorMessage;
 };
 
 const handleBtns = () => {
+  const form = document.querySelector('form');
+  const soldierNameElement = document.getElementById('soldierName');
+  const landingPage = document.querySelector('.landing-page');
+  const gamePage = document.querySelector('.game-page');
+  const playerName = document.querySelector('.player-name');
   /* This event listener will start the game by calling initialize function with the value of the input text as the name of the player,
    landing page will hide, game page will display and player-name as a new name */
 
@@ -32,6 +30,7 @@ const handleBtns = () => {
 
 // Will be called during game-loop to change the message while game goes on.
 const gameStage = (message) => {
+  const gameStatus = document.querySelector('.game-status');
   if (message === 'carrier') {
     gameStatus.textContent = 'Choose where to place your carrier...';
   } else if (message === 'battleship') {
