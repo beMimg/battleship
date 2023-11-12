@@ -40,9 +40,9 @@ const initializeGame = () => {
 };
 
 module.exports = initializeGame;
-playerContainer.addEventListener('click', (e) => {
-  const x = e.target.dataset.x;
-  const y = e.target.dataset.y;
-  const coords = [x, y];
-  return coords;
-});
+// playerContainer.addEventListener('click', (e) => {
+//   const x = e.target.dataset.x;
+//   const y = e.target.dataset.y;
+//   const coords = [x, y];
+//   return coords;
+// });

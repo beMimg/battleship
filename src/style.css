@@ -29,6 +29,9 @@ li {
   grid-template-rows: 15% 1fr;
   display: grid;
 }
+.hide {
+  display: none;
+}
 .header {
   padding: 20px;
   display: flex;
@@ -78,8 +81,14 @@ form button {
   font-family: var(--main-font);
   cursor: pointer;
 }
+.game-container {
+  display: none;
+}
+.display {
+  display: flex;
+  gap: 20px;
+}
 .grid-container {
-  margin: 20px;
   grid-gap: 2px;
   display: grid;
   grid-template-columns: repeat(10, 30px);
