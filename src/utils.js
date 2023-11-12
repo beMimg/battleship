@@ -2,7 +2,7 @@
 const form = document.querySelector('form');
 const soldierNameElement = document.getElementById('soldierName');
 const landingPage = document.querySelector('.landing-page');
-const gameContainer = document.querySelector('.game-container');
+const gamePage = document.querySelector('.game-page');
 
 const error = (type) => {
   let errorMessage = '';
@@ -20,7 +20,7 @@ const handleBtns = () => {
     e.preventDefault();
     const soldierName = soldierNameElement.value;
     landingPage.classList = 'landing-page hide';
-    gameContainer.classList.add('display');
+    gamePage.classList.add('display');
   });
 };
 
