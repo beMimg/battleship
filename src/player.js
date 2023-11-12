@@ -1,4 +1,4 @@
-const Gameboard = require('./gameboard');
+import Gameboard from './gameboard';
 
 const Player = (player) => {
   const playerOne = {
@@ -37,4 +37,4 @@ const Player = (player) => {
   return { playerOne, computer, playerOneAttacks, computerAttacks };
 };
 
-module.exports = Player;
+export default Player;

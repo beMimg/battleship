@@ -1,5 +1,5 @@
 /* eslint-disable */
-let createShip = require('../src/ship');
+import createShip from '../src/ship';
 
 describe('ship object', () => {
   const ship = createShip(3);

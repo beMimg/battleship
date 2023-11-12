@@ -1,5 +1,3 @@
 import './style.css';
-
-const { handleBtns } = require('./utils');
-
+import { handleBtns } from './utils';
 handleBtns();

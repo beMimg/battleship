@@ -54,4 +54,4 @@ const displayGrid = (container, whichPlayer) => {
   }
 };
 
-module.exports = displayGrid;
+export default displayGrid;

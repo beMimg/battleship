@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
-const initialize = require('./game');
+import initialize from './game';
 
 const form = document.querySelector('form');
 const soldierNameElement = document.getElementById('soldierName');
 const landingPage = document.querySelector('.landing-page');
 const gamePage = document.querySelector('.game-page');
 const playerName = document.querySelector('.player-name');
+const gameStatus = document.querySelector('.game-status');
 
 const error = (type) => {
   let errorMessage = '';
@@ -29,4 +30,30 @@ const handleBtns = () => {
   });
 };
 
-module.exports = { error, handleBtns };
+// Will be called during game-loop to change the message while game goes on.
+const gameStage = (message) => {
+  if (message === 'carrier') {
+    gameStatus.textContent = 'Choose where to place your carrier...';
+  } else if (message === 'battleship') {
+    gameStatus.textContent = 'Choose where to place your battleship...';
+  } else if (message === 'cruiser') {
+    gameStatus.textContent = 'Choose where to place your cruiser...';
+  } else if (message === 'submarine') {
+    gameStatus.textContent = 'Choose where to place your submarine...';
+  } else if (message === 'destroyer') {
+    gameStatus.textContent = 'Choose where to place your destroyer...';
+  }
+};
+
+/* This will return how many ships are in player gameboard.
+It will be usefull to check if there's only 5 ship indexes, 
+that means only the carrier was placed and we can continue to the next placement. */
+const howManyShips = (player) => {
+  const ocuppiedWithShip = player.game.iStatus.filter(
+    (index) => index.ship != null,
+  );
+  const howManyShipIndexes = ocuppiedWithShip.length;
+  return howManyShipIndexes;
+};
+
+export { error, handleBtns, gameStage, howManyShips };

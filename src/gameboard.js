@@ -1,5 +1,6 @@
-const createShip = require('./ship');
-const error = require('./utils');
+/* eslint-disable consistent-return */
+import createShip from './ship';
+import { error } from './utils';
 
 const Gameboard = () => {
   const buildBoard = () => {
@@ -115,4 +116,4 @@ const Gameboard = () => {
   };
 };
 
-module.exports = Gameboard;
+export default Gameboard;
