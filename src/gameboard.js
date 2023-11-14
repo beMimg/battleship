@@ -31,8 +31,8 @@ const Gameboard = () => {
   const iStatus = boardStatus(board);
 
   const isDifferentRow = (index, i) => {
-    // end of rows are 9,19,29,39,etc.
-    // this checks if index is smaller than 9, and index + i is bigger than 9 return true. placement not allowed.
+    /* The end of row ends by 9 [9,19,29,39,49,59,69,79,89,99] 
+    If index is smaller than 9(example), and index + i is bigger than 9 return true. placement not allowed */
     for (let j = 9; j < 100; j += 10) {
       if (index <= j && index + i > j) {
         return true;
@@ -41,6 +41,10 @@ const Gameboard = () => {
     return false;
   };
 
+  /* Called on placeShip(), returns true if its UNavailable 
+  For horizontal if (index + i) has ship or if its different row return
+  For vertical, indexes go 10 after 10, if (index + i * 10)has ship or
+  if (index + i * 10) is bigger or equal than 100 return, because the biggest index is 99 */
   const isPlacementUnavailable = (index, length, direction) => {
     for (let i = 0; i < length; i += 1) {
       if (direction === 'x') {
