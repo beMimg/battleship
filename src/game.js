@@ -12,12 +12,12 @@ const initialize = (name) => {
 
   if (howManyShips(players.playerOne) === 0) {
     gameStage('carrier');
-    displayUnplacedShip(5);
+    displayUnplacedShip(5, 'y');
     players.playerOne.game.placeShip([0, 0], 5, 'y');
   }
   if (howManyShips(players.playerOne) === 5) {
     gameStage('battleship');
-    displayUnplacedShip(4);
+    displayUnplacedShip(3);
     // players.playerOne.game.placeShip([0, 1], 4, 'y');
   }
   // if (howManyShips(players.playerOne) === 9) {

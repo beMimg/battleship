@@ -87,7 +87,7 @@ form button {
 .game-page.display {
   height: 100vh;
   display: grid;
-  grid-template-rows: 16% 68% 16%;
+  grid-template-rows: 16% 64% 20%;
 }
 .game-status {
   height: 5vh;
@@ -110,18 +110,6 @@ form button {
 }
 .player-name {
   text-transform: uppercase;
-}
-.ships-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.unplaced-ship {
-  width: 30px;
-  height: 30px;
-  background-color: grey;
-  border: 1px solid black;
-  cursor: pointer;
 }
 .grid-container {
   grid-gap: 2px;
@@ -156,10 +144,38 @@ form button {
 .isSunked {
   background-color: black;
 }
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ships-container-default-x {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.ships-container.y {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.unplaced-ship {
+  width: 30px;
+  height: 30px;
+  background-color: grey;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.unplaced-ship.y {
+  display: flex;
+  flex-direction: column;
+}
 .rotate-btn {
   display: none;
   font-size: 2rem;
-  bottom: 6%;
+  bottom: 8%;
   left: 40%;
   position: absolute;
   cursor: pointer;

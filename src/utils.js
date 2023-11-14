@@ -17,9 +17,9 @@ const handleBtns = () => {
   const gamePage = document.querySelector('.game-page');
   const playerName = document.querySelector('.player-name');
   const rotateBtn = document.querySelector('.rotate-btn');
+
   /* This event listener will start the game by calling initialize function with the value of the input text as the name of the player,
    landing page will hide, game page will display and player-name as a new name */
-
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const soldierName = soldierNameElement.value;
@@ -28,6 +28,25 @@ const handleBtns = () => {
     rotateBtn.classList.add('display');
     playerName.textContent = soldierName;
     initialize(soldierName);
+  });
+
+  /* Will change the class name of all ship-container childs from 'x' to 'y';
+  In the if statement is checked the LAST element of the nodeList, only when the LAST
+  element has changed class name means that ALL elements before have changed too. */
+  rotateBtn.addEventListener('click', (e) => {
+    const shipsContainer = e.currentTarget.previousElementSibling;
+    // get all childs of shipsContainer
+    const shipContainerChilds = shipsContainer.children;
+    const lastIndex = shipContainerChilds.length - 1;
+    for (let i = 0; i < shipContainerChilds.length; i += 1) {
+      if (shipContainerChilds[lastIndex].classList.contains('x')) {
+        shipsContainer.classList = 'ships-container y';
+        shipContainerChilds[i].classList = 'unplaced-ship y';
+      } else {
+        shipsContainer.classList = 'ships-container-default-x';
+        shipContainerChilds[i].classList = 'unplaced-ship x';
+      }
+    }
   });
 };
 
@@ -60,14 +79,14 @@ const howManyShips = (player) => {
 
 /* Creates a ship thro dom manipulation, length as the parameter, so it creates different sized ships */
 const displayUnplacedShip = (length) => {
-  const shipsContainer = document.querySelector('.ships-container');
+  const shipsContainer = document.querySelector('.ships-container-default-x');
   /* This will make that everytime we call this function, the prior content inside this div will vanish.
-   Avoiding ships overflow, because the last one alwas already placed. */
+   Avoiding ships overflow, because the last one was already placed. */
   shipsContainer.innerHTML = '';
   for (let i = 0; i < length; i += 1) {
     const unplacedShip = document.createElement('div');
     // The meaning of x will be that ship is displayed horizontally as default.
-    unplacedShip.classList = 'unplaced-ship x';
+    unplacedShip.classList = `unplaced-ship x`;
     shipsContainer.appendChild(unplacedShip);
   }
 };
