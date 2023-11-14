@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-console */
 import initialize from './game';
 
@@ -15,6 +16,7 @@ const handleBtns = () => {
   const landingPage = document.querySelector('.landing-page');
   const gamePage = document.querySelector('.game-page');
   const playerName = document.querySelector('.player-name');
+  const rotateBtn = document.querySelector('.rotate-btn');
   /* This event listener will start the game by calling initialize function with the value of the input text as the name of the player,
    landing page will hide, game page will display and player-name as a new name */
 
@@ -23,6 +25,7 @@ const handleBtns = () => {
     const soldierName = soldierNameElement.value;
     landingPage.classList = 'landing-page hide';
     gamePage.classList.add('display');
+    rotateBtn.classList.add('display');
     playerName.textContent = soldierName;
     initialize(soldierName);
   });
@@ -55,4 +58,18 @@ const howManyShips = (player) => {
   return howManyShipIndexes;
 };
 
-export { error, handleBtns, gameStage, howManyShips };
+/* Creates a ship thro dom manipulation, length as the parameter, so it creates different sized ships */
+const displayUnplacedShip = (length) => {
+  const shipsContainer = document.querySelector('.ships-container');
+  /* This will make that everytime we call this function, the prior content inside this div will vanish.
+   Avoiding ships overflow, because the last one alwas already placed. */
+  shipsContainer.innerHTML = '';
+  for (let i = 0; i < length; i += 1) {
+    const unplacedShip = document.createElement('div');
+    // The meaning of x will be that ship is displayed horizontally as default.
+    unplacedShip.classList = 'unplaced-ship x';
+    shipsContainer.appendChild(unplacedShip);
+  }
+};
+
+export { error, handleBtns, gameStage, howManyShips, displayUnplacedShip };
