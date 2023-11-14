@@ -10,6 +10,7 @@ const error = (type) => {
   return errorMessage;
 };
 
+// DOM querying inside functions to not interfere with JEST
 const handleBtns = () => {
   const form = document.querySelector('form');
   const soldierNameElement = document.getElementById('soldierName');
@@ -30,7 +31,7 @@ const handleBtns = () => {
     initialize(soldierName);
   });
 
-  /* Will change the class name of all ship-container childs from 'x' to 'y';
+  /* Will change the class name of ship-container-default-x and all of his childs class name from 'x' to 'y';
   In the if statement is checked the LAST element of the nodeList, only when the LAST
   element has changed class name means that ALL elements before have changed too. */
   rotateBtn.addEventListener('click', (e) => {
@@ -50,7 +51,7 @@ const handleBtns = () => {
   });
 };
 
-// Will be called during game-loop to change the message while game goes on.
+// Will be called during game-loop to change the message(dom) while game goes on.
 const gameStage = (message) => {
   const gameStatus = document.querySelector('.game-status');
   if (message === 'carrier') {

@@ -1,3 +1,9 @@
+/* Loop from 0 to 99, each loop creates a div with dataset-i,
+so that each element has identifier as index starting from 0 */
+/* It takes two parameters, container(depending if its on playerContainer or computerContainer,
+same goes for whichPlayer, each player has it's own array(iStatus). 
+playerContainer needs to display playerOne and computerContainer computer.
+*/
 const displayGrid = (container, whichPlayer) => {
   for (let i = 0; i < 100; i += 1) {
     const gridItem = document.createElement('div');
@@ -13,7 +19,8 @@ const displayGrid = (container, whichPlayer) => {
       gridItem.classList = 'gridItem empty';
     }
 
-    // Its not empty and not hit
+    /* Class list needs to be checked, because computer ships 
+    musnt be displayed, so gridItem empty(blue) */
     if (
       container.classList.value.includes('player-container') &&
       whichPlayer.game.iStatus[i].isAttacked === null &&
@@ -28,10 +35,11 @@ const displayGrid = (container, whichPlayer) => {
       gridItem.classList = 'gridItem empty';
     }
 
-    // Its not empty and hit
+    // Its not empty and hit, but not sunk
     if (
       whichPlayer.game.iStatus[i].isAttacked !== null &&
-      whichPlayer.game.iStatus[i].ship !== null
+      whichPlayer.game.iStatus[i].ship !== null &&
+      whichPlayer.game.iStatus[i].ship.isItSunk === false
     ) {
       gridItem.classList = 'gridItem shipHitted';
     }
@@ -44,7 +52,7 @@ const displayGrid = (container, whichPlayer) => {
       gridItem.classList = 'gridItem missedShot';
     }
 
-    // Its suck
+    // Its sunk
     if (
       whichPlayer.game.iStatus[i].ship !== null &&
       whichPlayer.game.iStatus[i].ship.isItSunk === true

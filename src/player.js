@@ -1,5 +1,8 @@
+/* eslint-disable import/no-cycle */
 import Gameboard from './gameboard';
 
+/* Name passed it as parameters sets the name of the playerOne.
+Computer starts with is own computer name */
 const Player = (player) => {
   const playerOne = {
     username: player,
@@ -8,22 +11,29 @@ const Player = (player) => {
   };
 
   const computer = {
-    username: 'Anonymous',
+    username: 'Computer',
     game: Gameboard(),
   };
 
-  const newArr = [...playerOne.game.board];
+  const boardCopy = [...playerOne.game.board];
 
+  /* To not repeat attacks, randomIndex from boardCopy.length
+  get the coords from that boardCopy random index and attack playerOne and
+  delete that index from the boardCopy so coords dont repeat
+  */
   const computerAttacks = () => {
     if (playerOne.turn === false) {
-      const randomIndex = Math.floor(Math.random() * newArr.length);
-      const coords = newArr[randomIndex];
+      const randomIndex = Math.floor(Math.random() * boardCopy.length);
+      const coords = boardCopy[randomIndex];
       playerOne.game.recieveAttack(coords);
-      newArr.splice(randomIndex, 1);
+      boardCopy.splice(randomIndex, 1);
       playerOne.turn = true;
     }
   };
 
+  /* With coords given as parameter and playerOne with turn:true(default),
+  Computer recieves an attack with those coords, turn is set to false and
+  computerAttacks() is called  */
   const playerOneAttacks = (coords) => {
     if (playerOne.turn === true) {
       computer.game.recieveAttack(coords);
