@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable radix */
 /* eslint-disable import/no-cycle */
@@ -75,17 +76,6 @@ const gameStage = (message) => {
   }
 };
 
-/* This will return how many ships are in player gameboard.
-It will be usefull to check if there's only 5 ship indexes, 
-that means only the carrier was placed and we can continue to the next placement. */
-const howManyShips = (player) => {
-  const ocuppiedWithShip = player.game.iStatus.filter(
-    (index) => index.ship != null,
-  );
-  const howManyShipIndexes = ocuppiedWithShip.length;
-  return howManyShipIndexes;
-};
-
 /* Creates a ship thro dom manipulation, length as the parameter, so it creates different sized ships */
 const displayUnplacedShip = (length) => {
   const shipsContainer = document.querySelector('.ships-container-default-x');
@@ -116,9 +106,14 @@ const dropHandler = (container, player) =>
   function (e) {
     e.preventDefault();
     const index = parseInt(e.target.dataset.i);
-    const target = e.target;
-    target.classList.add('target');
-    player.game.placeShip(index, 5, 'y'); // length and y and x to be handled
+    // const target = e.target;
+    // target.classList.add('target');
+    // console.log(target);
+    // lengths ok
+    let allShipLengths = [5, 4, 3, 3, 2];
+    // player.game.placeShip(index, allShipLengths[0], 'x'); // length and y and x to be handled
+    player.game.placeShip(index, allShipLengths[1], 'x'); // length and y and x to be handled
+
     displayGrid(container, player);
   };
 
@@ -126,7 +121,6 @@ export {
   error,
   handleBtns,
   gameStage,
-  howManyShips,
   displayUnplacedShip,
   dragoverHandler,
   dropHandler,

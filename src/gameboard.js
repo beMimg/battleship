@@ -100,6 +100,15 @@ const Gameboard = () => {
     return false;
   };
 
+  /* This will return how many ships are in player gameboard.
+It will be usefull to check if there's only 5 ship indexes, 
+that means only the carrier was placed and we can continue to the next placement. */
+  const howManyShips = () => {
+    const ocuppiedWithShip = iStatus.filter((index) => index.ship != null);
+    const howManyShipIndexes = ocuppiedWithShip.length;
+    return howManyShipIndexes;
+  };
+
   /* iStatus object has a key isAttacked and an OBJECT(ship *when its occupied*), 
   so isAttacked needs to be set o true, and ship object needs to call it's own function
   called beenHit that increments the number of "hits"(a ship proprety) */
@@ -136,6 +145,7 @@ const Gameboard = () => {
     hasShip,
     recieveAttack,
     isAllSunk,
+    howManyShips,
   };
 };
 

@@ -1,7 +1,7 @@
 /* eslint-disable */
 import Player from './player';
 import displayGrid from './grid';
-import { gameStage, howManyShips, displayUnplacedShip } from './utils';
+import { gameStage, displayUnplacedShip } from './utils';
 
 const initialize = (name) => {
   const playerContainer = document.querySelector('.player-container');
@@ -12,23 +12,23 @@ const initialize = (name) => {
   displayGrid(playerContainer, players.playerOne);
   displayGrid(computerContainer, players.computer);
 
-  if (howManyShips(players.playerOne) === 0) {
+  if (players.playerOne.game.howManyShips() === 0) {
     gameStage('carrier');
     displayUnplacedShip(5, 'y');
   }
-  if (howManyShips(players.playerOne) === 5) {
+  if (players.playerOne.game.howManyShips() === 5) {
     gameStage('battleship');
     displayUnplacedShip(4);
   }
-  if (howManyShips(players.playerOne) === 9) {
+  if (players.playerOne.game.howManyShips() === 9) {
     gameStage('cruiser');
     displayUnplacedShip(3);
   }
-  if (howManyShips(players.playerOne) === 12) {
+  if (players.playerOne.game.howManyShips() === 12) {
     gameStage('submarine');
     displayUnplacedShip(3);
   }
-  if (howManyShips(players.playerOne) === 15) {
+  if (players.playerOne.game.howManyShips() === 15) {
     gameStage('destroyer');
     displayUnplacedShip(2);
   }
@@ -53,12 +53,5 @@ const initialize = (name) => {
 
   console.log(players);
 };
-
-// playerContainer.addEventListener('click', (e) => {
-//   const x = e.target.dataset.x;
-//   const y = e.target.dataset.y;
-//   const coords = [x, y];
-//   return coords;
-// });
 
 export default initialize;
