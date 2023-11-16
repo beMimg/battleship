@@ -104,8 +104,15 @@ const dragoverHandler = (e) => {
 const dropHandler = (container, player) =>
   function (e) {
     e.preventDefault();
+    let direction;
+    const shipsContainer = document.querySelector('.ships-container');
+    if (shipsContainer.classList.contains('x')) {
+      direction = 'x';
+    } else {
+      direction = 'y';
+    }
     const index = parseInt(e.target.dataset.i);
-    player.game.placeShip(index);
+    player.game.placeShip(index, direction);
     displayGrid(container, player);
   };
 

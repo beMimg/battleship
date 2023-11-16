@@ -69,18 +69,10 @@ const Gameboard = () => {
     return howManyShipIndexes;
   };
 
-  const placeShip = (coords) => {
+  const placeShip = (coords, direction) => {
     let index = coords;
     let length;
-    let direction;
-    /* This element changes classList if rotateBtn is clicked, 
-    'ship-container x' or ship-container y' */
-    const shipsContainer = document.querySelector('.ships-container');
-    if (shipsContainer.classList.contains('x')) {
-      direction = 'x';
-    } else {
-      direction = 'y';
-    }
+
     // First creates a ship with length passed as parameter;
     // Find the index of the board array that matches the coords paramaters;
 
@@ -94,25 +86,16 @@ const Gameboard = () => {
     /* Everytime we call this function we check how many ships are in the gameboard, 
     is the same as saying how many times was this fucntion sucessfuly called(no placement unavailable), 
     will change the length.  */
+
     if (howManyShips() === 0) {
-      gameStage('battleship');
-      displayUnplacedShip(4);
       length = 5;
     } else if (howManyShips() === 5) {
-      gameStage('cruiser');
-      displayUnplacedShip(3);
       length = 4;
     } else if (howManyShips() === 9) {
-      gameStage('submarine');
-      displayUnplacedShip(3);
       length = 3;
     } else if (howManyShips() === 12) {
-      gameStage('destroyer');
-      displayUnplacedShip(2);
       length = 3;
     } else if (howManyShips() === 15) {
-      gameStage('allShipsPlaced');
-      displayUnplacedShip('completed');
       length = 2;
     } else {
       return;
