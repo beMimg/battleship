@@ -69,9 +69,18 @@ const Gameboard = () => {
     return howManyShipIndexes;
   };
 
-  const placeShip = (coords, direction) => {
+  const placeShip = (coords) => {
     let index = coords;
     let length;
+    let direction;
+    /* This element changes classList if rotateBtn is clicked, 
+    'ship-container x' or ship-container y' */
+    const shipsContainer = document.querySelector('.ships-container');
+    if (shipsContainer.classList.contains('x')) {
+      direction = 'x';
+    } else {
+      direction = 'y';
+    }
     // First creates a ship with length passed as parameter;
     // Find the index of the board array that matches the coords paramaters;
 

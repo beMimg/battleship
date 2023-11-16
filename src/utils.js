@@ -22,9 +22,7 @@ const handleBtns = () => {
   const gamePage = document.querySelector('.game-page');
   const playerName = document.querySelector('.player-name');
   const rotateBtn = document.querySelector('.rotate-btn');
-  const shipsContainerDRAG = document.querySelector(
-    '.ships-container-default-x',
-  );
+  const shipsContainer = document.querySelector('.ships-container');
 
   /* This event listener will start the game by calling initialize function with the value of the input text as the name of the player,
    landing page will hide, game page will display and player-name as a new name */
@@ -42,14 +40,14 @@ const handleBtns = () => {
   In the if statement is checked the LAST element of the nodeList, only when the LAST
   element has changed class name means that ALL elements before have changed too. */
   rotateBtn.addEventListener('click', () => {
-    if (shipsContainerDRAG.classList == 'ships-container-default-x') {
-      shipsContainerDRAG.classList = 'ships-container y';
+    if (shipsContainer.classList.contains('x')) {
+      shipsContainer.classList = 'ships-container y';
     } else {
-      shipsContainerDRAG.classList = 'ships-container-default-x';
+      shipsContainer.classList = 'ships-container x';
     }
   });
 
-  shipsContainerDRAG.addEventListener('dragstart', dragstartHandler);
+  shipsContainer.addEventListener('dragstart', dragstartHandler);
 };
 
 // Will be called during game-loop to change the message(dom) while game goes on.
@@ -73,10 +71,10 @@ const gameStage = (message) => {
 
 /* Creates a ship thro dom manipulation, length as the parameter, so it creates different sized ships */
 const displayUnplacedShip = (length) => {
-  const shipsContainer = document.querySelector('footer').firstElementChild;
-  console.log(shipsContainer);
+  const shipsContainer = document.querySelector('.ships-container');
   const rotateBtn = document.querySelector('.rotate-btn');
   if (length === 'completed') {
+    // Removes the unplaced ships and the rotate button
     shipsContainer.innerHTML = '';
     rotateBtn.classList = 'rotate-btn';
   }
@@ -107,13 +105,7 @@ const dropHandler = (container, player) =>
   function (e) {
     e.preventDefault();
     const index = parseInt(e.target.dataset.i);
-    // const target = e.target;
-    // target.classList.add('target');
-    // console.log(target);
-    // lengths ok
-    // player.game.placeShip(index, allShipLengths[0], 'x'); // length and y and x to be handled
-    player.game.placeShip(index, 'y'); // length and y and x to be handled
-
+    player.game.placeShip(index);
     displayGrid(container, player);
   };
 

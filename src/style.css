@@ -149,7 +149,7 @@ footer {
   align-items: center;
   justify-content: center;
 }
-.ships-container-default-x {
+.ships-container.x {
   display: flex;
   align-items: center;
   justify-content: center;
