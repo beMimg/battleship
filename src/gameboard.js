@@ -61,12 +61,17 @@ const Gameboard = () => {
   };
 
   const placeShip = (coords, length, direction) => {
+    let index = coords;
     // First creates a ship with length passed as parameter;
     const newShip = createShip(length);
     // Find the index of the board array that matches the coords paramaters;
-    const index = board.findIndex(
-      (element) => element[0] === coords[0] && element[1] === coords[1],
-    );
+
+    // If coords is given with an array [0,0], next step is find the index
+    if (Array.isArray(coords)) {
+      index = board.findIndex(
+        (element) => element[0] === coords[0] && element[1] === coords[1],
+      );
+    }
     // If placement is not allowed return error;
     if (isPlacementUnavailable(index, length, direction)) {
       return error('placement');

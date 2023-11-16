@@ -9,6 +9,12 @@ describe('the right square checking', () => {
     expect(game.hasShip([0, 0])).toBe(true);
   });
 
+  it('should return true when check if theres a ship in a the right coordinate giving the index as coords', () => {
+    const game = Gameboard();
+    game.placeShip(0, 1, 'x');
+    expect(game.hasShip([0, 0])).toBe(true);
+  });
+
   it('should return false when check if theres a ship in the wrong cooordinate', () => {
     const game = Gameboard();
     game.placeShip([0, 0], 1, 'x');

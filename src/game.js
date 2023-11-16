@@ -9,29 +9,30 @@ const initialize = (name) => {
 
   // This function is called when the form is submitted, with name being inp.value
   const players = Player(name);
+  displayGrid(playerContainer, players.playerOne);
+  displayGrid(computerContainer, players.computer);
 
   if (howManyShips(players.playerOne) === 0) {
     gameStage('carrier');
     displayUnplacedShip(5, 'y');
-    players.playerOne.game.placeShip([0, 0], 5, 'y');
   }
   if (howManyShips(players.playerOne) === 5) {
     gameStage('battleship');
-    displayUnplacedShip(3);
-    // players.playerOne.game.placeShip([0, 1], 4, 'y');
+    displayUnplacedShip(4);
   }
-  // if (howManyShips(players.playerOne) === 9) {
-  //   gameStage('cruiser');
-  //   players.playerOne.game.placeShip([0, 6], 3, 'x');
-  // }
-  // if (howManyShips(players.playerOne) === 12) {
-  //   gameStage('submarine');
-  //   players.playerOne.game.placeShip([6, 2], 3, 'x');
-  // }
-  // if (howManyShips(players.playerOne) === 15) {
-  //   gameStage('destroyer');
-  //   players.playerOne.game.placeShip([8, 8], 2, 'x');
-  // }
+  if (howManyShips(players.playerOne) === 9) {
+    gameStage('cruiser');
+    displayUnplacedShip(3);
+  }
+  if (howManyShips(players.playerOne) === 12) {
+    gameStage('submarine');
+    displayUnplacedShip(3);
+  }
+  if (howManyShips(players.playerOne) === 15) {
+    gameStage('destroyer');
+    displayUnplacedShip(2);
+  }
+
   // // players.playerOne.game.placeShip([3, 2], 3, 'x');
   // players.playerOne.game.placeShip([6, 2], 3, 'x');
   // players.playerOne.game.placeShip([8, 2], 1, 'x');
@@ -50,8 +51,6 @@ const initialize = (name) => {
   // players.playerOneAttacks([4, 0]);
   // players.playerOneAttacks([3, 2]);
 
-  displayGrid(playerContainer, players.playerOne);
-  displayGrid(computerContainer, players.computer);
   console.log(players);
 };
 

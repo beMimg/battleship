@@ -1,6 +1,9 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable radix */
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-console */
 import initialize from './game';
+import displayGrid from './grid';
 
 const error = (type) => {
   let errorMessage = '';
@@ -18,6 +21,9 @@ const handleBtns = () => {
   const gamePage = document.querySelector('.game-page');
   const playerName = document.querySelector('.player-name');
   const rotateBtn = document.querySelector('.rotate-btn');
+  const shipsContainerDRAG = document.querySelector(
+    '.ships-container-default-x',
+  );
 
   /* This event listener will start the game by calling initialize function with the value of the input text as the name of the player,
    landing page will hide, game page will display and player-name as a new name */
@@ -49,6 +55,8 @@ const handleBtns = () => {
       }
     }
   });
+
+  shipsContainerDRAG.addEventListener('dragstart', dragstartHandler);
 };
 
 // Will be called during game-loop to change the message(dom) while game goes on.
@@ -92,4 +100,34 @@ const displayUnplacedShip = (length) => {
   }
 };
 
-export { error, handleBtns, gameStage, howManyShips, displayUnplacedShip };
+const dragstartHandler = (e) => {
+  e.dataTransfer.setData('text/plain', e.target.id);
+  e.dataTransfer.effectAllowed = 'move';
+  console.log(e.dataTransfer);
+};
+
+const dragoverHandler = (e) => {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  console.log('dragging');
+};
+
+const dropHandler = (container, player) =>
+  function (e) {
+    e.preventDefault();
+    const index = parseInt(e.target.dataset.i);
+    const target = e.target;
+    target.classList.add('target');
+    player.game.placeShip(index, 5, 'y'); // length and y and x to be handled
+    displayGrid(container, player);
+  };
+
+export {
+  error,
+  handleBtns,
+  gameStage,
+  howManyShips,
+  displayUnplacedShip,
+  dragoverHandler,
+  dropHandler,
+};
