@@ -41,19 +41,11 @@ const handleBtns = () => {
   /* Will change the class name of ship-container-default-x and all of his childs class name from 'x' to 'y';
   In the if statement is checked the LAST element of the nodeList, only when the LAST
   element has changed class name means that ALL elements before have changed too. */
-  rotateBtn.addEventListener('click', (e) => {
-    const shipsContainer = e.currentTarget.previousElementSibling;
-    // get all childs of shipsContainer
-    const shipContainerChilds = shipsContainer.children;
-    const lastIndex = shipContainerChilds.length - 1;
-    for (let i = 0; i < shipContainerChilds.length; i += 1) {
-      if (shipContainerChilds[lastIndex].classList.contains('x')) {
-        shipsContainer.classList = 'ships-container y';
-        shipContainerChilds[i].classList = 'unplaced-ship y';
-      } else {
-        shipsContainer.classList = 'ships-container-default-x';
-        shipContainerChilds[i].classList = 'unplaced-ship x';
-      }
+  rotateBtn.addEventListener('click', () => {
+    if (shipsContainerDRAG.classList == 'ships-container-default-x') {
+      shipsContainerDRAG.classList = 'ships-container y';
+    } else {
+      shipsContainerDRAG.classList = 'ships-container-default-x';
     }
   });
 
@@ -73,19 +65,28 @@ const gameStage = (message) => {
     gameStatus.textContent = 'Choose where to place your submarine...';
   } else if (message === 'destroyer') {
     gameStatus.textContent = 'Choose where to place your destroyer...';
+  } else if (message === 'allShipsPlaced') {
+    gameStatus.textContent =
+      'Good job placing your ships, have you done this before?';
   }
 };
 
 /* Creates a ship thro dom manipulation, length as the parameter, so it creates different sized ships */
 const displayUnplacedShip = (length) => {
-  const shipsContainer = document.querySelector('.ships-container-default-x');
+  const shipsContainer = document.querySelector('footer').firstElementChild;
+  console.log(shipsContainer);
+  const rotateBtn = document.querySelector('.rotate-btn');
+  if (length === 'completed') {
+    shipsContainer.innerHTML = '';
+    rotateBtn.classList = 'rotate-btn';
+  }
   /* This will make that everytime we call this function, the prior content inside this div will vanish.
    Avoiding ships overflow, because the last one was already placed. */
   shipsContainer.innerHTML = '';
   for (let i = 0; i < length; i += 1) {
     const unplacedShip = document.createElement('div');
     // The meaning of x will be that ship is displayed horizontally as default.
-    unplacedShip.classList = `unplaced-ship x`;
+    unplacedShip.classList = `unplaced-ship`;
     shipsContainer.appendChild(unplacedShip);
   }
 };
@@ -110,9 +111,8 @@ const dropHandler = (container, player) =>
     // target.classList.add('target');
     // console.log(target);
     // lengths ok
-    let allShipLengths = [5, 4, 3, 3, 2];
     // player.game.placeShip(index, allShipLengths[0], 'x'); // length and y and x to be handled
-    player.game.placeShip(index, allShipLengths[1], 'x'); // length and y and x to be handled
+    player.game.placeShip(index, 'y'); // length and y and x to be handled
 
     displayGrid(container, player);
   };

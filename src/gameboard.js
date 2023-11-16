@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable consistent-return */
 import createShip from './ship';
-import { error } from './utils';
+import { error, gameStage, displayUnplacedShip } from './utils';
 
 const Gameboard = () => {
   // creates an array with coordenates
@@ -60,10 +60,19 @@ const Gameboard = () => {
     return false;
   };
 
-  const placeShip = (coords, length, direction) => {
+  /* This will return how many ships are in player gameboard.
+  It will be usefull to check if there's only 5 ship indexes, 
+  that means only the carrier was placed and we can continue to the next placement. */
+  const howManyShips = () => {
+    const ocuppiedWithShip = iStatus.filter((index) => index.ship != null);
+    const howManyShipIndexes = ocuppiedWithShip.length;
+    return howManyShipIndexes;
+  };
+
+  const placeShip = (coords, direction) => {
     let index = coords;
+    let length;
     // First creates a ship with length passed as parameter;
-    const newShip = createShip(length);
     // Find the index of the board array that matches the coords paramaters;
 
     // If coords is given with an array [0,0], next step is find the index
@@ -72,6 +81,36 @@ const Gameboard = () => {
         (element) => element[0] === coords[0] && element[1] === coords[1],
       );
     }
+
+    /* Everytime we call this function we check how many ships are in the gameboard, 
+    is the same as saying how many times was this fucntion sucessfuly called(no placement unavailable), 
+    will change the length.  */
+    if (howManyShips() === 0) {
+      gameStage('battleship');
+      displayUnplacedShip(4);
+      length = 5;
+    } else if (howManyShips() === 5) {
+      gameStage('cruiser');
+      displayUnplacedShip(3);
+      length = 4;
+    } else if (howManyShips() === 9) {
+      gameStage('submarine');
+      displayUnplacedShip(3);
+      length = 3;
+    } else if (howManyShips() === 12) {
+      gameStage('destroyer');
+      displayUnplacedShip(2);
+      length = 3;
+    } else if (howManyShips() === 15) {
+      gameStage('allShipsPlaced');
+      displayUnplacedShip('completed');
+      length = 2;
+    } else {
+      return;
+    }
+
+    const newShip = createShip(length);
+
     // If placement is not allowed return error;
     if (isPlacementUnavailable(index, length, direction)) {
       return error('placement');
@@ -98,15 +137,6 @@ const Gameboard = () => {
       return true;
     }
     return false;
-  };
-
-  /* This will return how many ships are in player gameboard.
-It will be usefull to check if there's only 5 ship indexes, 
-that means only the carrier was placed and we can continue to the next placement. */
-  const howManyShips = () => {
-    const ocuppiedWithShip = iStatus.filter((index) => index.ship != null);
-    const howManyShipIndexes = ocuppiedWithShip.length;
-    return howManyShipIndexes;
   };
 
   /* iStatus object has a key isAttacked and an OBJECT(ship *when its occupied*), 

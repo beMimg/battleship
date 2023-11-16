@@ -6,32 +6,29 @@ import { gameStage, displayUnplacedShip } from './utils';
 const initialize = (name) => {
   const playerContainer = document.querySelector('.player-container');
   const computerContainer = document.querySelector('.computer-container');
-
   // This function is called when the form is submitted, with name being inp.value
   const players = Player(name);
   displayGrid(playerContainer, players.playerOne);
   displayGrid(computerContainer, players.computer);
 
-  if (players.playerOne.game.howManyShips() === 0) {
-    gameStage('carrier');
-    displayUnplacedShip(5, 'y');
-  }
-  if (players.playerOne.game.howManyShips() === 5) {
-    gameStage('battleship');
-    displayUnplacedShip(4);
-  }
-  if (players.playerOne.game.howManyShips() === 9) {
-    gameStage('cruiser');
-    displayUnplacedShip(3);
-  }
-  if (players.playerOne.game.howManyShips() === 12) {
-    gameStage('submarine');
-    displayUnplacedShip(3);
-  }
-  if (players.playerOne.game.howManyShips() === 15) {
-    gameStage('destroyer');
-    displayUnplacedShip(2);
-  }
+  // if (players.playerOne.game.howManyShips() === 0) {
+  gameStage('carrier');
+  displayUnplacedShip(5, 'y');
+  //   console.log(players.playerOne.game.howManyShips());
+  // } else if (players.playerOne.game.howManyShips() === 5) {
+  //   gameStage('battleship');
+  //   displayUnplacedShip(4);
+  //   console.log(players.playerOne.game.howManyShips());
+  // } else if (players.playerOne.game.howManyShips() === 9) {
+  //   gameStage('cruiser');
+  //   displayUnplacedShip(3);
+  // } else if (players.playerOne.game.howManyShips() === 12) {
+  //   gameStage('submarine');
+  //   displayUnplacedShip(3);
+  // } else if (players.playerOne.game.howManyShips() === 15) {
+  //   gameStage('destroyer');
+  //   displayUnplacedShip(2);
+  // }
 
   // // players.playerOne.game.placeShip([3, 2], 3, 'x');
   // players.playerOne.game.placeShip([6, 2], 3, 'x');

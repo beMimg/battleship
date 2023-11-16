@@ -168,10 +168,6 @@ footer {
   border: 1px solid black;
   cursor: pointer;
 }
-.unplaced-ship.y {
-  display: flex;
-  flex-direction: column;
-}
 .rotate-btn {
   display: none;
   font-size: 2rem;

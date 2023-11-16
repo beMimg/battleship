@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 
 import { dragoverHandler, dropHandler } from './utils';
@@ -7,8 +8,7 @@ so that each element has identifier as index starting from 0 */
 
 /* It takes two parameters, container(depending if its on playerContainer or computerContainer,
 same goes for whichPlayer, each player has it's own array(iStatus). 
-playerContainer needs to display playerOne and computerContainer computer.
-*/
+playerContainer needs to display playerOne and computerContainer computer */
 const displayGrid = (container, whichPlayer) => {
   container.innerHTML = '';
   for (let i = 0; i < 100; i += 1) {
