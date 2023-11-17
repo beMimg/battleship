@@ -11,10 +11,10 @@ const initialize = (name) => {
   displayGrid(playerContainer, players.playerOne);
   displayGrid(computerContainer, players.computer);
 
+  // gameLoop(players);
   // if (players.playerOne.game.howManyShips() === 0) {
   gameStage('carrier');
-  displayUnplacedShip(5, 'y');
-  //   console.log(players.playerOne.game.howManyShips());
+  displayUnplacedShip(5);
   // } else if (players.playerOne.game.howManyShips() === 5) {
   //   gameStage('battleship');
   //   displayUnplacedShip(4);
@@ -47,8 +47,26 @@ const initialize = (name) => {
   // players.playerOneAttacks([3, 0]);
   // players.playerOneAttacks([4, 0]);
   // players.playerOneAttacks([3, 2]);
-
-  console.log(players);
 };
 
-export default initialize;
+const refreshGame = (container, player) => {
+  displayGrid(container, player);
+  if (player.game.howManyShips() === 5) {
+    gameStage('battleship');
+    displayUnplacedShip(4);
+  } else if (player.game.howManyShips() === 9) {
+    gameStage('cruiser');
+    displayUnplacedShip(3);
+  } else if (player.game.howManyShips() === 12) {
+    gameStage('submarine');
+    displayUnplacedShip(3);
+  } else if (player.game.howManyShips() === 15) {
+    gameStage('destroyer');
+    displayUnplacedShip(2);
+  } else if (player.game.howManyShips() === 17) {
+    gameStage('allShipsPlaced');
+    displayUnplacedShip('completed');
+  }
+};
+
+export { initialize, refreshGame };

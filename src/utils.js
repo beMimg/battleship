@@ -1,10 +1,10 @@
+/* eslint-disable func-names */
 /* eslint-disable no-use-before-define */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable radix */
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-console */
-import initialize from './game';
-import displayGrid from './grid';
+import { initialize, refreshGame } from './game';
 
 const error = (type) => {
   let errorMessage = '';
@@ -113,7 +113,7 @@ const dropHandler = (container, player) =>
     }
     const index = parseInt(e.target.dataset.i);
     player.game.placeShip(index, direction);
-    displayGrid(container, player);
+    refreshGame(container, player);
   };
 
 export {
