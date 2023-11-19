@@ -19,10 +19,10 @@ const game = (stage) => {
     gameStage('carrier');
     displayUnplacedShip(5);
     lobbyPlayers.computer.game.placeShip([0, 0], 'y');
-    // lobbyPlayers.computer.game.placeShip([0, 9], 'y');
-    // lobbyPlayers.computer.game.placeShip([5, 0], 'y');
-    // lobbyPlayers.computer.game.placeShip([8, 2], 'x');
-    // lobbyPlayers.computer.game.placeShip([9, 8], 'x');
+    lobbyPlayers.computer.game.placeShip([0, 9], 'y');
+    lobbyPlayers.computer.game.placeShip([5, 0], 'y');
+    lobbyPlayers.computer.game.placeShip([8, 2], 'x');
+    lobbyPlayers.computer.game.placeShip([9, 8], 'x');
   }
 
   if (stage === 'stage2') {
@@ -55,38 +55,60 @@ const game = (stage) => {
     gameStage('attack');
     computerContainer.addEventListener('click', (e) => {
       e.preventDefault();
+
+      // Get the e.targetId and parseInt to num
       const targetId = parseInt(e.target.dataset.i);
-      console.log(targetId);
-      lobbyPlayers.playerOneAttacks(targetId);
-      displayGrid(computerContainer, lobbyPlayers.computer);
+
+      // If the coords of the attack is already attacked, return.
+      if (lobbyPlayers.computer.game.iStatus[targetId].isAttacked === null) {
+        lobbyPlayers.playerOneAttacks(targetId);
+        displayGrid(computerContainer, lobbyPlayers.computer);
+      } else {
+        return;
+      }
+
+      /* If the computer has a ship on index(targetId),
+      set message 'You hit a ship!', two seconds after(If computer still has ships),
+      message that computer will attack, and two seconds after that message will display that random attack */
       if (lobbyPlayers.computer.game.hasShip(targetId)) {
         gameStage('attackedShip');
-        setTimeout(() => {
-          if (lobbyPlayers.computer.game.isAllSunk() === false) {
+        if (
+          lobbyPlayers.computer.game.iStatus[targetId].ship.isItSunk === true
+        ) {
+          gameStage('shipDown');
+        }
+
+        if (lobbyPlayers.computer.game.isAllSunk() === false) {
+          setTimeout(() => {
             gameStage('computerAttacks');
-          }
-        }, 2000);
-        setTimeout(() => {
-          lobbyPlayers.computerAttacks();
-          displayGrid(playerContainer, lobbyPlayers.playerOne);
-        }, 4000);
+          }, 2000);
+          setTimeout(() => {
+            lobbyPlayers.computerAttacks();
+            displayGrid(playerContainer, lobbyPlayers.playerOne);
+          }, 4000);
+        }
+
+        /* Else => the computer doesn't have a ship on index(targetId),
+        set message that player missed the computers ship, after two seconds, 
+        will do the same as when computer has ship */
       } else {
         gameStage('missedShip');
-        setTimeout(() => {
-          if (lobbyPlayers.computer.game.isAllSunk() === false) {
+        if (lobbyPlayers.computer.game.isAllSunk() === false) {
+          setTimeout(() => {
             gameStage('computerAttacks');
-          }
-        }, 2000);
-        setTimeout(() => {
-          lobbyPlayers.computerAttacks();
-          displayGrid(playerContainer, lobbyPlayers.playerOne);
-        }, 4000);
+          }, 2000);
+          setTimeout(() => {
+            lobbyPlayers.computerAttacks();
+            displayGrid(playerContainer, lobbyPlayers.playerOne);
+          }, 4000);
+        }
       }
+
+      // If all sunk, message that game is over and call stage='gameOver'
       if (
         lobbyPlayers.playerOne.game.isAllSunk() ||
         lobbyPlayers.computer.game.isAllSunk()
       ) {
-        console.log('gameOver');
         gameStage('gameOver');
         game('gameOver');
       }

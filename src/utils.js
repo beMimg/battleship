@@ -87,6 +87,11 @@ const gameStage = (message) => {
     gameStatus.textContent = 'You hit ! The water...';
   } else if (message === 'gameOver') {
     gameStatus.textContent = 'War finally came to an end...';
+  } else if (message === 'shipAlreadyHit') {
+    gameStatus.textContent = 'You have already hit this coordenate';
+  } else if (message === 'shipDown') {
+    gameStatus.textContent =
+      'BOOOOOOM!!! You have exploded one of your enemy ships';
   }
 };
 
