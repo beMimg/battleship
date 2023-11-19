@@ -73,6 +73,8 @@ const gameStage = (message) => {
       'Good job placing your ships, have you done this before?';
   } else if (message === 'attack') {
     gameStatus.textContent = 'attack';
+  } else if (message === 'computerAttacks') {
+    gameStatus.textContent = 'Enemy attacked, get ready for impact!';
   }
 };
 

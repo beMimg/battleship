@@ -182,7 +182,45 @@ footer {
 .rotate-btn.display {
   display: block;
 }
-
+.game-over {
+  display: none;
+  visibility: hidden;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+.game-over.display {
+  display: flex;
+  visibility: visible;
+}
+.game-over-container {
+  width: 30vw;
+  height: 60vh;
+  border-radius: 20px;
+  border: 3px solid black;
+  background-color: rgb(9, 39, 104);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.winner {
+  font-size: 5rem;
+}
+.restart-game {
+  width: 15vw;
+  height: 15vh;
+  font-size: 3rem;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
 @media only screen and (max-width: 600px) {
   .game-container.display {
     display: flex;

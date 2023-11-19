@@ -1,5 +1,6 @@
 /* eslint-disable import/no-cycle */
 import Gameboard from './gameboard';
+import { gameStage } from './utils';
 
 /* Name passed it as parameters sets the name of the playerOne.
 Computer starts with is own computer name */
@@ -28,6 +29,7 @@ const Player = (player) => {
       playerOne.game.recieveAttack(coords);
       boardCopy.splice(randomIndex, 1);
       playerOne.turn = true;
+      gameStage('attack');
     }
   };
 
@@ -38,7 +40,10 @@ const Player = (player) => {
     if (playerOne.turn === true) {
       computer.game.recieveAttack(coords);
       playerOne.turn = false;
-      computerAttacks();
+      gameStage('computerAttacks');
+      setTimeout(() => {
+        computerAttacks();
+      }, 2000);
     } else if (playerOne.turn === false) {
       throw new Error('Not your turn to play');
     }

@@ -18,6 +18,11 @@ const game = (stage) => {
     displayGrid(computerContainer, lobbyPlayers.computer);
     gameStage('carrier');
     displayUnplacedShip(5);
+    lobbyPlayers.computer.game.placeShip([0, 0], 'y');
+    // lobbyPlayers.computer.game.placeShip([0, 9], 'y');
+    // lobbyPlayers.computer.game.placeShip([5, 0], 'y');
+    // lobbyPlayers.computer.game.placeShip([8, 2], 'x');
+    // lobbyPlayers.computer.game.placeShip([9, 8], 'x');
   }
 
   if (stage === 'stage2') {
@@ -47,16 +52,36 @@ const game = (stage) => {
   if (stage === 'stage3') {
     const computerContainer = document.querySelector('.computer-container');
     const playerContainer = document.querySelector('.player-container');
-
     gameStage('attack');
     computerContainer.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = parseInt(e.target.dataset.i);
       console.log(targetId);
       lobbyPlayers.playerOneAttacks(targetId);
-      displayGrid(playerContainer, lobbyPlayers.playerOne);
       displayGrid(computerContainer, lobbyPlayers.computer);
+      setTimeout(() => {
+        displayGrid(playerContainer, lobbyPlayers.playerOne);
+      }, 2000);
+      if (
+        lobbyPlayers.playerOne.game.isAllSunk() ||
+        lobbyPlayers.computer.game.isAllSunk()
+      ) {
+        console.log('gameOver');
+        game('gameOver');
+      }
     });
+  }
+
+  if (stage === 'gameOver') {
+    const gameOverHTML = document.querySelector('.game-over');
+    const winner = document.querySelector('.winner');
+    gameOverHTML.classList.add('display');
+    if (lobbyPlayers.playerOne.game.isAllSunk()) {
+      winner.textContent = 'You lost the war';
+    }
+    if (lobbyPlayers.computer.game.isAllSunk()) {
+      winner.textContent = 'You won the war';
+    }
   }
 };
 
