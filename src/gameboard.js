@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable consistent-return */
 import createShip from './ship';
-import { error, gameStage, displayUnplacedShip } from './utils';
+import { error } from './utils';
 
 const Gameboard = () => {
   // creates an array with coordenates

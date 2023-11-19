@@ -1,10 +1,13 @@
+/* eslint-disable no-import-assign */
 /* eslint-disable func-names */
 /* eslint-disable no-use-before-define */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable radix */
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-console */
-import { initialize, refreshGame } from './game';
+
+import { game, setHumanName } from './game';
+import Player from './player';
 
 const error = (type) => {
   let errorMessage = '';
@@ -26,6 +29,7 @@ const handleBtns = () => {
 
   /* This event listener will start the game by calling initialize function with the value of the input text as the name of the player,
    landing page will hide, game page will display and player-name as a new name */
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const soldierName = soldierNameElement.value;
@@ -33,7 +37,8 @@ const handleBtns = () => {
     gamePage.classList.add('display');
     rotateBtn.classList.add('display');
     playerName.textContent = soldierName;
-    initialize(soldierName);
+    setHumanName(Player(soldierName));
+    game('stage1');
   });
 
   /* Will change the class name of ship-container-default-x and all of his childs class name from 'x' to 'y';
@@ -66,6 +71,8 @@ const gameStage = (message) => {
   } else if (message === 'allShipsPlaced') {
     gameStatus.textContent =
       'Good job placing your ships, have you done this before?';
+  } else if (message === 'attack') {
+    gameStatus.textContent = 'attack';
   }
 };
 
@@ -104,6 +111,9 @@ const dragoverHandler = (e) => {
 const dropHandler = (container, player) =>
   function (e) {
     e.preventDefault();
+    /* Get the right direction through the displayUnplacedShip, 
+    if the unplaced ship is horizontal, classList contains 'x',
+    other way arround for vertical 'y' */
     let direction;
     const shipsContainer = document.querySelector('.ships-container');
     if (shipsContainer.classList.contains('x')) {
@@ -111,9 +121,13 @@ const dropHandler = (container, player) =>
     } else {
       direction = 'y';
     }
+    // Index of the gridItem where unplaced ship was dropped.
     const index = parseInt(e.target.dataset.i);
-    player.game.placeShip(index, direction);
-    refreshGame(container, player);
+    // Only place a ship if the grid container target is the player, not the computer
+    if (container.classList.value.includes('player-container')) {
+      player.game.placeShip(index, direction);
+    }
+    game('stage2');
   };
 
 export {

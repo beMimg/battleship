@@ -17,10 +17,8 @@ const displayGrid = (container, whichPlayer) => {
     gridItem.dataset.i = i;
     container.appendChild(gridItem);
     // Drag and drop added './utils.js'
-    if (container.classList.value.includes('player-container')) {
-      gridItem.addEventListener('dragover', dragoverHandler);
-      gridItem.addEventListener('drop', dropHandler(container, whichPlayer));
-    }
+    gridItem.addEventListener('dragover', dragoverHandler);
+    gridItem.addEventListener('drop', dropHandler(container, whichPlayer));
     // Its empty and not hit
     if (
       whichPlayer.game.iStatus[i].isAttacked === null &&
