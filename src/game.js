@@ -62,7 +62,9 @@ const game = (stage) => {
       if (lobbyPlayers.computer.game.hasShip(targetId)) {
         gameStage('attackedShip');
         setTimeout(() => {
-          gameStage('computerAttacks');
+          if (lobbyPlayers.computer.game.isAllSunk() === false) {
+            gameStage('computerAttacks');
+          }
         }, 2000);
         setTimeout(() => {
           lobbyPlayers.computerAttacks();
@@ -71,7 +73,9 @@ const game = (stage) => {
       } else {
         gameStage('missedShip');
         setTimeout(() => {
-          gameStage('computerAttacks');
+          if (lobbyPlayers.computer.game.isAllSunk() === false) {
+            gameStage('computerAttacks');
+          }
         }, 2000);
         setTimeout(() => {
           lobbyPlayers.computerAttacks();

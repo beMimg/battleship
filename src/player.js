@@ -23,7 +23,7 @@ const Player = (player) => {
   delete that index from the boardCopy so coords dont repeat
   */
   const computerAttacks = () => {
-    if (playerOne.turn === false) {
+    if (playerOne.turn === false && computer.game.isAllSunk() === false) {
       const randomIndex = Math.floor(Math.random() * boardCopy.length);
       const coords = boardCopy[randomIndex];
       playerOne.game.recieveAttack(coords);
