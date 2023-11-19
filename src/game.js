@@ -18,11 +18,18 @@ const game = (stage) => {
     displayGrid(computerContainer, lobbyPlayers.computer);
     gameStage('carrier');
     displayUnplacedShip(5);
-    lobbyPlayers.computer.game.placeShip([0, 0], 'y');
-    lobbyPlayers.computer.game.placeShip([0, 9], 'y');
-    lobbyPlayers.computer.game.placeShip([5, 0], 'y');
-    lobbyPlayers.computer.game.placeShip([8, 2], 'x');
-    lobbyPlayers.computer.game.placeShip([9, 8], 'x');
+    while (lobbyPlayers.computer.game.howManyShips() !== 17) {
+      const randomIndex = Math.floor(Math.random() * 100);
+      const diretion = ['y', 'x'];
+      const randomDiretion = Math.floor(Math.random() * 2);
+      console.log(diretion[randomDiretion]);
+
+      lobbyPlayers.computer.game.placeShip(
+        randomIndex,
+        diretion[randomDiretion],
+      );
+      console.log(lobbyPlayers.computer.game.howManyShips());
+    }
   }
 
   if (stage === 'stage2') {

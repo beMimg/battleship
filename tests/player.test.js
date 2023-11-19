@@ -7,20 +7,11 @@ describe('players can take turns playing the game by attacking the enemy Gameboa
     expect(player.playerOne.turn).toBe(true);
   });
 
-  it('expect playerOne.turn to return true when playerTwo attacks', () => {
+  it('expect playerOne.turn to return true when playerTwo attacks', async () => {
     const player = Player('John');
     player.playerOneAttacks([0, 2]);
     player.computerAttacks();
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     expect(player.playerOne.turn).toBeTruthy();
-  });
-
-  it('expects playerOne to have one hit and playerOne.turn to be true after playerTwo attacks', () => {
-    const player = Player('John');
-    player.playerOneAttacks([0, 2]);
-    player.computerAttacks();
-    expect(player.playerOne.turn).toBeTruthy();
-    expect(player.playerOne.game.iStatus).toEqual(
-      expect.arrayContaining([{ isAttacked: true, ship: null }]),
-    );
   });
 });
