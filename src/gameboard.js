@@ -122,9 +122,12 @@ const Gameboard = () => {
   };
 
   const hasShip = (coords) => {
-    const index = board.findIndex(
-      (element) => element[0] === coords[0] && element[1] === coords[1],
-    );
+    let index = coords;
+    if (Array.isArray(coords)) {
+      index = board.findIndex(
+        (element) => element[0] === coords[0] && element[1] === coords[1],
+      );
+    }
     if (iStatus[index].ship != null) {
       return true;
     }

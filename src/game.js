@@ -59,14 +59,31 @@ const game = (stage) => {
       console.log(targetId);
       lobbyPlayers.playerOneAttacks(targetId);
       displayGrid(computerContainer, lobbyPlayers.computer);
-      setTimeout(() => {
-        displayGrid(playerContainer, lobbyPlayers.playerOne);
-      }, 2000);
+      if (lobbyPlayers.computer.game.hasShip(targetId)) {
+        gameStage('attackedShip');
+        setTimeout(() => {
+          gameStage('computerAttacks');
+        }, 2000);
+        setTimeout(() => {
+          lobbyPlayers.computerAttacks();
+          displayGrid(playerContainer, lobbyPlayers.playerOne);
+        }, 4000);
+      } else {
+        gameStage('missedShip');
+        setTimeout(() => {
+          gameStage('computerAttacks');
+        }, 2000);
+        setTimeout(() => {
+          lobbyPlayers.computerAttacks();
+          displayGrid(playerContainer, lobbyPlayers.playerOne);
+        }, 4000);
+      }
       if (
         lobbyPlayers.playerOne.game.isAllSunk() ||
         lobbyPlayers.computer.game.isAllSunk()
       ) {
         console.log('gameOver');
+        gameStage('gameOver');
         game('gameOver');
       }
     });

@@ -40,10 +40,6 @@ const Player = (player) => {
     if (playerOne.turn === true) {
       computer.game.recieveAttack(coords);
       playerOne.turn = false;
-      gameStage('computerAttacks');
-      setTimeout(() => {
-        computerAttacks();
-      }, 2000);
     } else if (playerOne.turn === false) {
       throw new Error('Not your turn to play');
     }

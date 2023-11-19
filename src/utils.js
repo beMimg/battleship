@@ -26,6 +26,7 @@ const handleBtns = () => {
   const playerName = document.querySelector('.player-name');
   const rotateBtn = document.querySelector('.rotate-btn');
   const shipsContainer = document.querySelector('.ships-container');
+  const restartBtn = document.querySelector('.restart-game');
 
   /* This event listener will start the game by calling initialize function with the value of the input text as the name of the player,
    landing page will hide, game page will display and player-name as a new name */
@@ -52,6 +53,11 @@ const handleBtns = () => {
     }
   });
 
+  restartBtn.addEventListener('click', () => {
+    // eslint-disable-next-line no-restricted-globals, no-undef
+    location.reload();
+  });
+
   shipsContainer.addEventListener('dragstart', dragstartHandler);
 };
 
@@ -72,9 +78,15 @@ const gameStage = (message) => {
     gameStatus.textContent =
       'Good job placing your ships, have you done this before?';
   } else if (message === 'attack') {
-    gameStatus.textContent = 'attack';
+    gameStatus.textContent = 'Now! Attack your opponent!';
   } else if (message === 'computerAttacks') {
     gameStatus.textContent = 'Enemy attacked, get ready for impact!';
+  } else if (message === 'attackedShip') {
+    gameStatus.textContent = 'You hit a ship!';
+  } else if (message === 'missedShip') {
+    gameStatus.textContent = 'You hit ! The water...';
+  } else if (message === 'gameOver') {
+    gameStatus.textContent = 'War finally came to an end...';
   }
 };
 
