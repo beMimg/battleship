@@ -135,9 +135,14 @@ const Gameboard = () => {
   so isAttacked needs to be set o true, and ship object needs to call it's own function
   called beenHit that increments the number of "hits"(a ship proprety) */
   const recieveAttack = (coords) => {
-    const index = board.findIndex(
-      (element) => element[0] === coords[0] && element[1] === coords[1],
-    );
+    let index = coords;
+
+    if (Array.isArray(coords)) {
+      index = board.findIndex(
+        (element) => element[0] === coords[0] && element[1] === coords[1],
+      );
+    }
+
     iStatus[index].isAttacked = true;
     if (iStatus[index].ship !== null) {
       iStatus[index].ship.beenHit();

@@ -22,7 +22,6 @@ const game = (stage) => {
 
   if (stage === 'stage2') {
     const playerContainer = document.querySelector('.player-container');
-    const computerContainer = document.querySelector('.computer-container');
     displayGrid(playerContainer, lobbyPlayers.playerOne);
     if (lobbyPlayers.playerOne.game.howManyShips() === 5) {
       gameStage('battleship');
@@ -39,7 +38,25 @@ const game = (stage) => {
     } else if (lobbyPlayers.playerOne.game.howManyShips() === 17) {
       gameStage('allShipsPlaced');
       displayUnplacedShip('completed');
+      setTimeout(() => {
+        game('stage3');
+      }, 2000);
     }
+  }
+
+  if (stage === 'stage3') {
+    const computerContainer = document.querySelector('.computer-container');
+    const playerContainer = document.querySelector('.player-container');
+
+    gameStage('attack');
+    computerContainer.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = parseInt(e.target.dataset.i);
+      console.log(targetId);
+      lobbyPlayers.playerOneAttacks(targetId);
+      displayGrid(playerContainer, lobbyPlayers.playerOne);
+      displayGrid(computerContainer, lobbyPlayers.computer);
+    });
   }
 };
 
