@@ -288,9 +288,9 @@ footer {
     min-width: 20vw;
   }
   .game-page.display {
-    height: auto;
+    height: 150vh;
     display: grid;
-    grid-template-rows: 15% 200px 1fr;
+    grid-template-rows: 15% 15% 70%;
   }
   .game-status {
     display: flex;
@@ -298,7 +298,6 @@ footer {
     justify-content: center;
   }
   .game-container {
-    gap: 40px;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: none;
@@ -322,11 +321,8 @@ footer {
     height: 25px;
   }
   .player-side {
-    margin-bottom: 20px;
   }
   .computer-side {
-    margin-top: 20px;
-    margin-bottom: 20px;
   }
   footer {
     width: 100%;
@@ -339,5 +335,25 @@ footer {
     height: 60px;
     left: 5%;
     top: 25%;
+  }
+  .game-over {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Adjust the z-index as needed */
+    height: 150vh;
+  }
+  .game-over-container {
+    width: 100%;
+  }
+  .winner {
+    font-size: 2rem;
+  }
+  .restart-game {
+    width: 70vw;
+    font-size: 2rem;
   }
 }
