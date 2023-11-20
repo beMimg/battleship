@@ -9,7 +9,7 @@ body {
   margin: 0;
   font-size: 16px;
   background:
-    linear-gradient(rgba(1, 22, 36, 0.2), rgba(0, 0, 0, 0.78)),
+    linear-gradient(rgba(6, 97, 158, 0.2), rgba(0, 0, 0, 0.4)),
     url(./assets/ai-generated-8228367_1920.jpg) center/cover no-repeat;
   color: white;
   font-family: var(--main-font);
@@ -40,14 +40,24 @@ li {
 }
 .header .title {
   font-size: 8vh;
+  transition: all 0.3s ease;
+}
+.header .title:hover {
+  margin-right: 20px;
+  transform: scale(1.1);
 }
 .get-player-info {
-  margin: 20px;
+  margin: 75px;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
+}
+.get-player-info:hover {
+  margin: 30px;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 form {
   width: 100%;
@@ -59,17 +69,27 @@ form {
   align-items: center;
 }
 form label {
-  font-size: 2rem;
+  font-size: 3rem;
   text-align: center;
 }
 form input {
   width: 35vw;
   min-width: 200px;
   padding: 10px;
-  font-size: 2rem;
+  font-size: 3rem;
   border-radius: 5px;
   border: none;
   font-family: var(--main-font);
+  color: white;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+form input:hover {
+  background-color: #3498db;
+  transform: scale(1.1);
+}
+form input:focus {
+  background-color: #3498db;
+  transform: scale(1.1);
 }
 form button {
   width: 30vw;
@@ -80,6 +100,13 @@ form button {
   border-radius: 4px;
   font-family: var(--main-font);
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+form button:hover {
+  background-color: #3498db;
+  color: #fff;
+  border-color: #fff;
+  transform: scale(1.1);
 }
 .game-page {
   display: none;
@@ -101,6 +128,7 @@ form button {
   justify-self: center;
   align-items: center;
   justify-items: center;
+  transition: all 0.3s ease;
 }
 .game-container {
   display: grid;
@@ -110,16 +138,17 @@ form button {
 }
 .player-name {
   text-transform: uppercase;
+  font-size: 40px;
 }
 .grid-container {
-  grid-gap: 2px;
   display: grid;
   grid-template-columns: repeat(10, 30px);
+  gap: 3px;
 }
 .gridItem {
   width: 30px;
   height: 30px;
-  border: 1px solid black;
+  border: 2px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,7 +157,9 @@ form button {
 }
 .gridItem:hover {
   background-color: rgb(135, 243, 238);
+  transform: scale(1.1);
 }
+
 .empty {
   background-color: rgb(0, 105, 148);
 }
@@ -145,9 +176,12 @@ form button {
   background-color: black;
 }
 footer {
+  border-radius: 9px;
+  margin: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .ships-container.x {
   display: flex;
@@ -202,13 +236,17 @@ footer {
   width: 30vw;
   height: 60vh;
   border-radius: 20px;
-  border: 3px solid black;
-  background-color: rgb(9, 39, 104);
+  border: 3px solid white;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
+  transition: all 0.3s ease;
+}
+.game-over-container:hover {
+  transform: scale(1.1);
 }
 .winner {
   font-size: 5rem;
@@ -220,6 +258,13 @@ footer {
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+.restart-game:hover {
+  transform: scale(1.1);
+  background-color: #3498db;
+  color: #fff;
+  border-color: #fff;
 }
 @media only screen and (max-width: 600px) {
   .game-container.display {

@@ -99,8 +99,10 @@ const gameStage = (message) => {
 const displayUnplacedShip = (length) => {
   const shipsContainer = document.querySelector('.ships-container');
   const rotateBtn = document.querySelector('.rotate-btn');
+  const footer = document.querySelector('footer');
   if (length === 'completed') {
     // Removes the unplaced ships and the rotate button
+    footer.style.visibility = 'hidden';
     shipsContainer.innerHTML = '';
     rotateBtn.classList = 'rotate-btn';
   }
