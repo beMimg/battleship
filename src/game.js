@@ -9,8 +9,6 @@ function setHumanName(name) {
 }
 
 const game = (stage) => {
-  console.log(lobbyPlayers);
-
   if (stage === 'stage1') {
     const playerContainer = document.querySelector('.player-container');
     const computerContainer = document.querySelector('.computer-container');
@@ -22,13 +20,11 @@ const game = (stage) => {
       const randomIndex = Math.floor(Math.random() * 100);
       const diretion = ['y', 'x'];
       const randomDiretion = Math.floor(Math.random() * 2);
-      console.log(diretion[randomDiretion]);
 
       lobbyPlayers.computer.game.placeShip(
         randomIndex,
         diretion[randomDiretion],
       );
-      console.log(lobbyPlayers.computer.game.howManyShips());
     }
   }
 
