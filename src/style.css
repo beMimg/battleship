@@ -244,6 +244,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   gap: 20px;
   transition: all 0.3s ease;
 }
@@ -252,6 +253,7 @@ footer {
 }
 .winner {
   font-size: 5rem;
+  text-align: center;
 }
 .restart-game {
   width: 15vw;
@@ -320,10 +322,7 @@ footer {
     width: 25px;
     height: 25px;
   }
-  .player-side {
-  }
-  .computer-side {
-  }
+
   footer {
     width: 100%;
     height: 20vh;
