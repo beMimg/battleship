@@ -190,6 +190,7 @@ footer {
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  perspective: 800px;
 }
 .ships-container.y {
   display: flex;
@@ -197,12 +198,41 @@ footer {
   justify-content: center;
   flex-direction: column;
 }
-.unplaced-ship {
+.ships-container.x .unplaced-ship {
   width: 30px;
   height: 30px;
   background-color: grey;
   border: 1px solid black;
   cursor: pointer;
+  animation: highlitedShipX 3s infinite linear;
+}
+
+.ships-container.y .unplaced-ship {
+  width: 30px;
+  height: 30px;
+  background-color: grey;
+  border: 1px solid black;
+  cursor: pointer;
+  animation: highlitedShipY infinite linear;
+}
+
+@keyframes highlitedShipX {
+  from {
+    border: 1px solid black;
+  }
+  to {
+    border: 1px solid yellow;
+    transform: rotateX(360deg);
+  }
+}
+@keyframes highlitedShipY {
+  from {
+    border: 1px solid black;
+  }
+  to {
+    border: 1px solid yellow;
+    transform: rotateY(360deg);
+  }
 }
 .rotate-btn {
   display: none;
