@@ -120,13 +120,11 @@ const displayUnplacedShip = (length) => {
 const dragstartHandler = (e) => {
   e.dataTransfer.setData('text/plain', e.target.id);
   e.dataTransfer.effectAllowed = 'move';
-  console.log(e.dataTransfer);
 };
 
 const dragoverHandler = (e) => {
   e.preventDefault();
   e.dataTransfer.dropEffect = 'move';
-  console.log('dragging');
 };
 
 const dropHandler = (container, player) =>

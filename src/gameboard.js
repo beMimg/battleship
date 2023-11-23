@@ -47,6 +47,10 @@ const Gameboard = () => {
   if (index + i * 10) is bigger or equal than 100 return, because the biggest index is 99 */
   const isPlacementUnavailable = (index, length, direction) => {
     for (let i = 0; i < length; i += 1) {
+      // If index+i is bigger than 99
+      if (iStatus[index + i] === undefined) {
+        return true;
+      }
       if (direction === 'x') {
         if (iStatus[index + i].ship !== null || isDifferentRow(index, i)) {
           return true;

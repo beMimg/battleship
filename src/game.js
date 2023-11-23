@@ -17,7 +17,7 @@ const game = (stage) => {
     gameStage('carrier');
     displayUnplacedShip(5);
     while (lobbyPlayers.computer.game.howManyShips() !== 17) {
-      const randomIndex = Math.floor(Math.random() * 100);
+      const randomIndex = Math.floor(Math.random() * 99);
       const diretion = ['y', 'x'];
       const randomDiretion = Math.floor(Math.random() * 2);
 
