@@ -123,10 +123,10 @@ const game = (stage) => {
     const winner = document.querySelector('.winner');
     gameOverHTML.classList.add('display');
     if (lobbyPlayers.playerOne.game.isAllSunk()) {
-      winner.textContent = 'You lost the war';
+      winner.textContent = 'You failed soldier, you lost the war...';
     }
     if (lobbyPlayers.computer.game.isAllSunk()) {
-      winner.textContent = 'You won the war';
+      winner.textContent = 'Good job soldier, you won the war!';
     }
   }
 };

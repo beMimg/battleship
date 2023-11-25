@@ -13,6 +13,7 @@ body {
     url(./assets/ai-generated-8228367_1920.jpg) center/cover no-repeat;
   color: white;
   font-family: var(--main-font);
+  overflow: hidden;
 }
 h1,
 h2,
@@ -24,10 +25,21 @@ li {
   margin: 0;
 }
 .landing-page {
+  position: absolute;
+  width: 100vw;
   height: 100vh;
   gap: 20px;
   grid-template-rows: 15% 1fr;
   display: grid;
+}
+.landing-page[closing] {
+  animation:
+    slide-down 0.5s forwards,
+    fade-out 0.5s forwards;
+  pointer-events: none;
+}
+.landing-page[closed] {
+  display: none;
 }
 .hide {
   display: none;
@@ -111,10 +123,16 @@ form button:hover {
 .game-page {
   display: none;
 }
-.game-page.display {
+.game-page[opening] {
   height: 100vh;
   display: grid;
   grid-template-rows: 16% 64% 20%;
+  opacity: 0;
+}
+.game-page[open] {
+  animation:
+    slide-up 1s forwards,
+    fade-in 1s forwards;
 }
 .game-status {
   height: 5vh;
@@ -215,25 +233,6 @@ footer {
   cursor: pointer;
   animation: highlitedShipY infinite linear;
 }
-
-@keyframes highlitedShipX {
-  from {
-    border: 1px solid black;
-  }
-  to {
-    border: 1px solid yellow;
-    transform: rotateX(360deg);
-  }
-}
-@keyframes highlitedShipY {
-  from {
-    border: 1px solid black;
-  }
-  to {
-    border: 1px solid yellow;
-    transform: rotateY(360deg);
-  }
-}
 .rotate-btn {
   display: none;
   font-size: 2rem;
@@ -250,46 +249,44 @@ footer {
 }
 .game-over {
   display: none;
-  visibility: hidden;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.9);
   align-items: center;
   justify-content: center;
+  z-index: 1000000;
 }
 .game-over.display {
   display: flex;
-  visibility: visible;
 }
 .game-over-container {
-  width: 30vw;
-  height: 60vh;
-  border-radius: 20px;
-  border: 3px solid white;
-  background-color: rgba(0, 0, 0, 0.8);
+  width: 60vw;
+  height: 30vh;
+  gap: 20px;
+  border: 10px solid rgb(0, 105, 148);
+  background-color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   text-align: center;
-  gap: 20px;
   transition: all 0.3s ease;
 }
 .game-over-container:hover {
   transform: scale(1.1);
 }
 .winner {
-  font-size: 5rem;
+  font-size: 2rem;
   text-align: center;
 }
 .restart-game {
-  width: 15vw;
-  height: 15vh;
-  font-size: 3rem;
-  border-radius: 10px;
+  width: 80%;
+  font-size: 1.5rem;
+  padding: 10px;
+  border: 5px solid rgb(0, 105, 148);
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
@@ -307,22 +304,36 @@ footer {
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
+    overflow: auto;
+    height: 100%;
+  }
+  .get-player-info {
+    margin: 0;
+  }
+  form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
   .header .title {
     font-size: 3rem;
   }
   form label {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   form input {
-    font-size: 1.5rem;
-    width: 50%;
+    font-size: 1.2rem;
+    width: 80%;
     min-width: 20vw;
   }
-  .game-page.display {
+  form button {
+    font-size: 1.2rem;
+  }
+  .game-page[open] {
     height: 150vh;
     display: grid;
-    grid-template-rows: 15% 15% 70%;
+    grid-template-rows: 10% 10% auto;
   }
   .game-status {
     display: flex;
@@ -363,18 +374,13 @@ footer {
     padding: 0;
     height: 60px;
     left: 5%;
-    top: 25%;
+    top: 14%;
   }
   .game-over {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999; /* Adjust the z-index as needed */
     height: 150vh;
   }
+
   .game-over-container {
     width: 100%;
   }
@@ -384,5 +390,56 @@ footer {
   .restart-game {
     width: 70vw;
     font-size: 2rem;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-down {
+  100% {
+    transform: translateY(100%);
+  }
+}
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes highlitedShipX {
+  from {
+    border: 1px solid black;
+  }
+  to {
+    border: 1px solid yellow;
+    transform: rotateX(360deg);
+  }
+}
+@keyframes highlitedShipY {
+  from {
+    border: 1px solid black;
+  }
+  to {
+    border: 1px solid yellow;
+    transform: rotateY(360deg);
   }
 }

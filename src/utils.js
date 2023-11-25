@@ -34,8 +34,18 @@ const handleBtns = () => {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const soldierName = soldierNameElement.value;
-    landingPage.classList = 'landing-page hide';
-    gamePage.classList.add('display');
+    landingPage.setAttribute('closing', '');
+    landingPage.addEventListener(
+      'animationend',
+      () => {
+        landingPage.removeAttribute('closing');
+        landingPage.setAttribute('closed', '');
+        gamePage.setAttribute('opening', '');
+        gamePage.setAttribute('open', '');
+      },
+      { once: true },
+    );
+
     rotateBtn.classList.add('display');
     playerName.textContent = soldierName;
     setHumanName(Player(soldierName));
