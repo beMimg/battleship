@@ -481,9 +481,36 @@ footer {
     width: 70vw;
     font-size: 2rem;
   }
+
   .how-to-play-container {
-    width: 100vw;
     gap: 20px;
+    min-width: 100%;
+    margin: 20px;
+  }
+  .how-to-play-container div {
+    margin: 5px;
+  }
+  .how-to-play-container h1 {
+    font-size: 1.2rem;
+  }
+  .how-to-play-container li {
+    font-size: 1rem;
+  }
+  .help-btn {
+    top: 11%;
+    width: 30px;
+    height: 30px;
+    font-size: 2rem;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  how-to-play-container {
+    gap: 20px;
+    min-width: 100%;
+    margin: 20px;
+  }
+  .how-to-play-container div {
+    margin: 5px;
   }
   .how-to-play-container h1 {
     font-size: 1.2rem;
