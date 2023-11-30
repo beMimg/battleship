@@ -27,6 +27,9 @@ const handleBtns = () => {
   const rotateBtn = document.querySelector('.rotate-btn');
   const shipsContainer = document.querySelector('.ships-container');
   const restartBtn = document.querySelector('.restart-game');
+  const helpBtn = document.querySelector('.help-btn');
+  const howToPlay = document.querySelector('.how-to-play');
+  const closeHelpBtn = document.querySelector('.close-help-btn');
 
   /* This event listener will start the game by calling initialize function with the value of the input text as the name of the player,
    landing page will hide, game page will display and player-name as a new name */
@@ -69,6 +72,14 @@ const handleBtns = () => {
   });
 
   shipsContainer.addEventListener('dragstart', dragstartHandler);
+
+  helpBtn.addEventListener('click', () => {
+    howToPlay.classList = 'how-to-play open';
+  });
+
+  closeHelpBtn.addEventListener('click', () => {
+    howToPlay.classList = 'how-to-play close';
+  });
 };
 
 // Will be called during game-loop to change the message(dom) while game goes on.

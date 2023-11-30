@@ -222,7 +222,7 @@ footer {
   background-color: grey;
   border: 1px solid black;
   cursor: pointer;
-  animation: highlitedShipX 3s infinite linear;
+  animation: highlitedShipX 1s infinite alternate;
 }
 
 .ships-container.y .unplaced-ship {
@@ -297,6 +297,96 @@ footer {
   color: #fff;
   border-color: #fff;
 }
+
+.how-to-play {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  z-index: 333322;
+  top: 0;
+  left: 0;
+}
+.how-to-play.open {
+  animation: fade-in-display-flex 2s ease;
+  display: flex;
+}
+.how-to-play.close {
+  animation: fade-out-display-none 1s ease;
+}
+
+.how-to-play-container {
+  background-color: #082b42;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 10px;
+  max-width: 60%;
+  gap: 70px;
+  padding: 20px;
+  animation: jump 0.5s infinite alternate;
+}
+.how-to-play-container li {
+  font-size: 1.3rem;
+}
+.how-to-play-container ul {
+  list-style-type: none;
+}
+
+.grey {
+  background-color: rgb(77, 77, 77);
+}
+.red {
+  background-color: rgb(255, 0, 0);
+}
+.white {
+  background-color: rgb(192, 192, 192);
+}
+.black {
+  background-color: black;
+}
+.color-help li {
+  padding: 10px;
+}
+.close-help-btn {
+  background-color: yellow;
+  color: black;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  top: 22%;
+  right: 20%;
+  font-size: 1.5rem;
+  border: 3px solid black;
+  cursor: pointer;
+  display: flex;
+  align-self: end;
+}
+.help-btn {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  font-size: 4rem;
+  background-color: yellow;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-radius: 2px;
+  top: 5%;
+  left: 5%;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 3000;
+}
+
 @media only screen and (max-width: 768px) {
   body {
     background: linear-gradient(rgba(3, 23, 36, 0.7), rgba(0, 0, 0, 1)),
@@ -391,6 +481,24 @@ footer {
     width: 70vw;
     font-size: 2rem;
   }
+  .how-to-play {
+  }
+  .how-to-play-container {
+    width: 100vw;
+    gap: 20px;
+  }
+  .how-to-play-container h1 {
+    font-size: 1.2rem;
+  }
+  .how-to-play-container li {
+    font-size: 1rem;
+  }
+  .help-btn {
+    top: 11%;
+    width: 30px;
+    height: 30px;
+    font-size: 2rem;
+  }
 }
 
 @keyframes fade-in {
@@ -441,5 +549,37 @@ footer {
   to {
     border: 1px solid yellow;
     transform: rotateY(360deg);
+  }
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-1%);
+  }
+}
+
+@keyframes fade-out-display-none {
+  0% {
+    opacity: 1;
+    display: flex;
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+@keyframes fade-in-display-flex {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+
+  100% {
+    opacity: 1;
+    display: flex;
   }
 }
